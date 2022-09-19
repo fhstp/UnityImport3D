@@ -1,0 +1,15 @@
+{
+  "name": "ac.at.fhstp.import3d",
+  "version": "0.1.0",
+  "displayName": "Import3D",
+  "description": "An asynchronous runtime 3D-model importer for Unity",
+  "unity": "2020.3",
+  "author": {
+    "name": "Ramon Brullo"
+  },
+  "dependencies": {
+  },
+  "keywords": [
+  ],
+  "hideInEditor": false
+}
