@@ -1,6 +1,6 @@
 {
-    "name": "Ac.At.FhStp.Import3D",
-    "rootNamespace": "Ac.At.FhStp.Import3D",
+    "name": "At.Ac.FhStp.Import3D",
+    "rootNamespace": "At.Ac.FhStp.Import3D",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
