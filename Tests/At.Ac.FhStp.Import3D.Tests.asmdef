@@ -1,5 +1,5 @@
 {
-    "name": "At.Ac.FhStp.Import3D.Tests.Editor",
+    "name": "At.Ac.FhStp.Import3D.Tests",
     "rootNamespace": "At.Ac.FhStp.Import3D",
     "references": [
         "UnityEditor.TestRunner",

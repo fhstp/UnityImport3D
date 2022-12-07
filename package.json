@@ -8,7 +8,7 @@
     "name": "Ramon Brullo"
   },
   "dependencies": {
-    "com.unity.test-framework": "1.1.33"
+    "com.unity.test-framework": "2.0.1-exp.2"
   },
   "keywords": [
   ],
