@@ -23,17 +23,22 @@ namespace At.Ac.FhStp.Import3D
                                               NormalizeByte01(texel.B),
                                               NormalizeByte01(texel.A)));
 
-        internal static Conversion<TextureModel> EmbeddedTexture(
+        private static Conversion<TextureModel> CompressedTexture(
+            AssimpEmbeddedTexture assimpTexture) =>
+            Conversion<TextureModel>.Sync(() =>
+            {
+                var name = FileNameOf(assimpTexture);
+
+                // TODO: Use format hint to determine if texture type is supported
+                var bytes = assimpTexture.CompressedData.ToImmutableArray();
+                return new CompressedTextureModel(name, bytes);
+            });
+
+        private static Conversion<TextureModel> NonCompressedTexture(
             AssimpEmbeddedTexture assimpTexture) =>
             Conversion<TextureModel>.Async(async () =>
             {
                 var name = FileNameOf(assimpTexture);
-                if (assimpTexture.IsCompressed)
-                {
-                    // TODO: Use format hint to determine if texture type is supported
-                    var bytes = assimpTexture.CompressedData.ToImmutableArray();
-                    return new CompressedTextureModel(name, bytes);
-                }
 
                 var width = assimpTexture.Width;
                 var height = assimpTexture.Height;
@@ -43,6 +48,13 @@ namespace At.Ac.FhStp.Import3D
                 return new NonCompressedTextureModel(name, width, height,
                                                      pixels.ToImmutableArray());
             });
+
+        internal static Conversion<TextureModel> EmbeddedTexture(
+            AssimpEmbeddedTexture assimpTexture) =>
+            Conversion<TextureModel>.Async(
+                async () => assimpTexture.IsCompressed
+                    ? await CompressedTexture(assimpTexture)
+                    : await NonCompressedTexture(assimpTexture));
 
     }
 
