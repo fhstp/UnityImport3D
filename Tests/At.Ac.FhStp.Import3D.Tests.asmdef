@@ -5,15 +5,14 @@
         "UnityEditor.TestRunner",
         "At.Ac.FhStp.Import3D"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
         "nunit.framework.dll",
-        "AssimpNet.dll"
+        "AssimpNet.dll",
+        "System.Collections.Immutable.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

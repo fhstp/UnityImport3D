@@ -8,7 +8,8 @@
     "name": "Ramon Brullo"
   },
   "dependencies": {
-    "com.unity.test-framework": "2.0.1-exp.2"
+    "com.unity.test-framework": "2.0.1-exp.2",
+    "org.nuget.system.collections.immutable": "7.0.0"
   },
   "keywords": [
   ],
