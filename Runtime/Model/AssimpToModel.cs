@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using AssimpEmbeddedTexture = Assimp.EmbeddedTexture;
 using AssimpTexel = Assimp.Texel;
@@ -22,14 +23,25 @@ namespace At.Ac.FhStp.Import3D
                                               NormalizeByte01(texel.B),
                                               NormalizeByte01(texel.A)));
 
-        internal static Conversion<TextureModel> EmbeddedTexture(AssimpEmbeddedTexture assimpTexture) =>
-            Conversion<TextureModel>.Sync(() =>
+        internal static Conversion<TextureModel> EmbeddedTexture(
+            AssimpEmbeddedTexture assimpTexture) =>
+            Conversion<TextureModel>.Async(async () =>
             {
-                // TODO: Check if texture is compressed
-                // TODO: Use format hint to determine if texture type is supported
                 var name = FileNameOf(assimpTexture);
-                var bytes = assimpTexture.CompressedData.ToImmutableArray();
-                return new CompressedTextureModel(name, bytes);
+                if (assimpTexture.IsCompressed)
+                {
+                    // TODO: Use format hint to determine if texture type is supported
+                    var bytes = assimpTexture.CompressedData.ToImmutableArray();
+                    return new CompressedTextureModel(name, bytes);
+                }
+
+                var width = assimpTexture.Width;
+                var height = assimpTexture.Height;
+                var pixels = await assimpTexture.NonCompressedData
+                                                .Select(Texel)
+                                                .InParallel();
+                return new NonCompressedTextureModel(name, width, height,
+                                                     pixels.ToImmutableArray());
             });
 
     }
