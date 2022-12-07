@@ -3,7 +3,7 @@
     "rootNamespace": "At.Ac.FhStp.Import3D",
     "references": [
         "UnityEditor.TestRunner",
-        "Ac.At.FhStp.Import3D"
+        "At.Ac.FhStp.Import3D"
     ],
     "includePlatforms": [
         "Editor"
