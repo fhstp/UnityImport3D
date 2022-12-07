@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
+using UnityEngine.TestTools;
 using AssimpEmbeddedTexture = Assimp.EmbeddedTexture;
 
 namespace At.Ac.FhStp.Import3D
 {
 
+    [RequiresPlayMode(false)]
     public class AssimpToModelTests
     {
 
