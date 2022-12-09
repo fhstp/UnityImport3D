@@ -34,7 +34,7 @@ namespace At.Ac.FhStp.Import3D
 
     }
 
-    internal static class Ext
+    internal static class ConversionExt
     {
 
         public static Conversion<IEnumerable<T>> InParallel<T>(
