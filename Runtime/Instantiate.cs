@@ -4,13 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dev.ComradeVanti;
 using UnityEngine;
+using UnityObject = UnityEngine.Object;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
 namespace At.Ac.FhStp.Import3D
 {
 
-    internal static partial class Instantiate
+    internal static class Instantiate
     {
+        
+        private static Task<Nothing> SetName(UnityObject o, string name)
+        {
+            o.name = name;
+            return noResult;
+        }
 
         private static Task<Texture2D> MakeTexture2DWithSize(
             int width, int height) =>
