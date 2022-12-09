@@ -12,12 +12,23 @@ namespace At.Ac.FhStp.Import3D
     internal static partial class Instantiate
     {
 
+        private static Task<Texture2D> MakeTexture2DWithSize(
+            int width, int height) =>
+            Task.FromResult(new Texture2D(width, height));
+
         private static Task<Texture2D> MakeEmptyTexture2D() =>
-            Task.FromResult(new Texture2D(0, 0));
+            MakeTexture2DWithSize(0, 0);
 
         private static Task<Nothing> WriteBytes(Texture2D texture, IEnumerable<byte> bytes)
         {
             texture.LoadImage(bytes.ToArray());
+            return noResult;
+        }
+
+        private static Task<Nothing> WritePixels(Texture2D texture, IEnumerable<Color> pixels)
+        {
+            texture.SetPixels(pixels.ToArray());
+            texture.Apply();
             return noResult;
         }
 
@@ -31,6 +42,15 @@ namespace At.Ac.FhStp.Import3D
                     await InParallel(
                         SetName(texture, model.Name),
                         WriteBytes(texture, compressed.Bytes));
+                    return texture;
+                }
+                case NonCompressedTextureModel nonCompressed:
+                {
+                    var texture = await MakeTexture2DWithSize(
+                        nonCompressed.Width, nonCompressed.Height);
+                    await InParallel(
+                        SetName(texture, model.Name),
+                        WritePixels(texture, nonCompressed.Pixels));
                     return texture;
                 }
                 default: throw new ArgumentException("Unknown texture type!");

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +13,14 @@ namespace At.Ac.FhStp.Import3D
     public class InstantiateTexture2DTests
     {
 
+        private static IEnumerable<Color> MakeSolidPixels(int width, int height, Color color) =>
+            Enumerable.Repeat(color, width * height);
+
         private static ImmutableArray<byte> MakePngBytes(
             int width, int height, Color color)
         {
             var tex = new Texture2D(width, height, TextureFormat.RGB24, false);
-            var pixels = Enumerable.Repeat(color, width * height).ToArray();
+            var pixels = MakeSolidPixels(width, height, color).ToArray();
             tex.SetPixels(pixels);
             var bytes = tex.EncodeToPNG().ToImmutableArray();
             Object.Destroy(tex);
@@ -59,6 +63,48 @@ namespace At.Ac.FhStp.Import3D
             var tex = await Instantiate.Texture2D(model);
 
             Assert.AreEqual(Color.green, tex.GetPixel(0, 0));
+        }
+
+        [Test]
+        public async Task NonCompressedTexture_Name_Is_Model_Name()
+        {
+            const string name = "image";
+
+            var model = new NonCompressedTextureModel(
+                name, 0, 0, ImmutableArray<Color>.Empty);
+            var tex = await Instantiate.Texture2D(model);
+
+            Assert.AreEqual(name, tex.name);
+        }
+
+        [Test]
+        public async Task NonCompressedTexture_Size_Is_Model_Size()
+        {
+            const int width = 2;
+            const int height = 4;
+
+            var model = new NonCompressedTextureModel(
+                "image", width, height,
+                MakeSolidPixels(width, height, Color.black)
+                    .ToImmutableArray());
+            var tex = await Instantiate.Texture2D(model);
+
+            Assert.AreEqual(width, tex.width);
+            Assert.AreEqual(height, tex.height);
+        }
+
+        [Test]
+        public async Task NonCompressedTexture_Pixels_Is_Model_Pixels()
+        {
+            const int width = 2;
+            const int height = 4;
+            var pixels = MakeSolidPixels(width, height, Color.black)
+                .ToImmutableArray();
+            var model = new NonCompressedTextureModel(
+                "image", width, height, pixels);
+            var tex = await Instantiate.Texture2D(model);
+
+            Assert.AreEqual(pixels, tex.GetPixels());
         }
 
     }
