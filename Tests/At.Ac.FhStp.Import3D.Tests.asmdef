@@ -13,7 +13,8 @@
     "precompiledReferences": [
         "nunit.framework.dll",
         "AssimpNet.dll",
-        "System.Collections.Immutable.dll"
+        "System.Collections.Immutable.dll",
+        "System.Memory.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

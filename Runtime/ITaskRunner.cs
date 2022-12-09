@@ -1,8 +1,7 @@
 using System;
-using System.Threading;
+using System.Linq;
 using System.Threading.Tasks;
 using Dev.ComradeVanti;
-using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D
 {
@@ -56,6 +55,14 @@ namespace At.Ac.FhStp.Import3D
             runner.Run(() =>
             {
                 action();
+                return Nothing.atAll;
+            });
+
+        internal static Task<Nothing> RunInParallel(
+            this ITaskRunner runner, params Func<Nothing>[] funcs) =>
+            runner.Run(async () =>
+            {
+                await Task.WhenAll(funcs.Select(runner.Run));
                 return Nothing.atAll;
             });
 
