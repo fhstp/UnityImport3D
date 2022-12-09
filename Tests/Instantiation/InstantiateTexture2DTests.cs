@@ -12,8 +12,6 @@ namespace At.Ac.FhStp.Import3D
     public class InstantiateTexture2DTests
     {
 
-        private ITaskRunner apiThread;
-
         private static ImmutableArray<byte> MakePngBytes(
             int width, int height, Color color)
         {
@@ -25,19 +23,13 @@ namespace At.Ac.FhStp.Import3D
             return bytes;
         }
 
-
-        [SetUp]
-        public void SetUp() =>
-            apiThread = TaskRunner.ForCurrentThread();
-
-
         [Test]
         public async Task CompressedTexture_Name_Is_Model_Name()
         {
             const string name = "image";
 
             var model = new CompressedTextureModel(name, ImmutableArray<byte>.Empty);
-            var tex = await Instantiate.Texture2D(model, apiThread);
+            var tex = await Instantiate.Texture2D(model);
 
             Assert.AreEqual(name, tex.name);
         }
@@ -50,7 +42,7 @@ namespace At.Ac.FhStp.Import3D
             var bytes = MakePngBytes(width, height, Color.black);
 
             var model = new CompressedTextureModel("image", bytes);
-            var tex = await Instantiate.Texture2D(model, apiThread);
+            var tex = await Instantiate.Texture2D(model);
 
             Assert.AreEqual(width, tex.width);
             Assert.AreEqual(height, tex.height);
@@ -64,7 +56,7 @@ namespace At.Ac.FhStp.Import3D
             var bytes = MakePngBytes(width, height, Color.green);
 
             var model = new CompressedTextureModel("image", bytes);
-            var tex = await Instantiate.Texture2D(model, apiThread);
+            var tex = await Instantiate.Texture2D(model);
 
             Assert.AreEqual(Color.green, tex.GetPixel(0, 0));
         }
