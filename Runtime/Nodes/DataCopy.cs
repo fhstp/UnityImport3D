@@ -25,6 +25,10 @@ namespace At.Ac.FhStp.Import3D.Nodes
                 meshRenderer.material = material;
             });
 
+        internal static Task<Nothing> CopyRelationship(
+            GameObject parent, GameObject child) =>
+            DoAsync(() => child.transform.SetParent(parent.transform, true));
+
     }
 
 }
