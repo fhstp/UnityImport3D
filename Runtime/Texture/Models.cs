@@ -1,17 +1,16 @@
 using System.Collections.Immutable;
 using UnityEngine;
 
-namespace At.Ac.FhStp.Import3D
+namespace At.Ac.FhStp.Import3D.Texture
 {
 
     internal abstract class TextureModel : INamedModel
     {
 
-        public string Name { get; }
-
-
         protected TextureModel(string name) =>
             Name = name;
+
+        public string Name { get; }
 
     }
 
@@ -32,8 +31,8 @@ namespace At.Ac.FhStp.Import3D
         public int Width { get; }
 
         public int Height { get; }
-        
-        public  ImmutableArray<Color> Pixels { get; }
+
+        public ImmutableArray<Color> Pixels { get; }
 
 
         public NonCompressedTextureModel(string name, int width, int height, ImmutableArray<Color> pixels)

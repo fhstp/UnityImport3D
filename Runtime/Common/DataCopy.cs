@@ -3,10 +3,10 @@ using Dev.ComradeVanti;
 using UnityObject = UnityEngine.Object;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
-namespace At.Ac.FhStp.Import3D.DataCopy
+namespace At.Ac.FhStp.Import3D.Common
 {
 
-    internal static class Common
+    internal static class DataCopy
     {
 
         internal static Task<Nothing> CopyName(

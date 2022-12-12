@@ -5,10 +5,10 @@ using UnityEngine;
 using AssimpEmbeddedTexture = Assimp.EmbeddedTexture;
 using AssimpTexel = Assimp.Texel;
 
-namespace At.Ac.FhStp.Import3D
+namespace At.Ac.FhStp.Import3D.Texture
 {
 
-    internal static class AssimpToModel
+    internal static class ModelConversion
     {
 
         private static string FileNameOf(AssimpEmbeddedTexture assimpTexture) =>
@@ -17,13 +17,13 @@ namespace At.Ac.FhStp.Import3D
         private static float NormalizeByte01(byte b) =>
             b / 255f;
 
-        internal static Color Texel(AssimpTexel texel) =>
+        internal static Color ConvertToModel(AssimpTexel texel) =>
             new Color(NormalizeByte01(texel.R),
                       NormalizeByte01(texel.G),
                       NormalizeByte01(texel.B),
                       NormalizeByte01(texel.A));
 
-        private static TextureModel CompressedTexture(AssimpEmbeddedTexture assimpTexture)
+        private static TextureModel ConvertCompressedTexture(AssimpEmbeddedTexture assimpTexture)
         {
             var name = FileNameOf(assimpTexture);
 
@@ -32,22 +32,22 @@ namespace At.Ac.FhStp.Import3D
             return new CompressedTextureModel(name, bytes);
         }
 
-        private static TextureModel NonCompressedTexture(AssimpEmbeddedTexture assimpTexture)
+        private static TextureModel ConvertNonCompressedTexture(AssimpEmbeddedTexture assimpTexture)
         {
             var name = FileNameOf(assimpTexture);
 
             var width = assimpTexture.Width;
             var height = assimpTexture.Height;
             var pixels = assimpTexture.NonCompressedData
-                                      .Select(Texel)
+                                      .Select(ConvertToModel)
                                       .ToImmutableArray();
             return new NonCompressedTextureModel(name, width, height, pixels);
         }
 
-        internal static TextureModel EmbeddedTexture(AssimpEmbeddedTexture assimpTexture) =>
+        internal static TextureModel ConvertToModel(AssimpEmbeddedTexture assimpTexture) =>
             assimpTexture.IsCompressed
-                ? CompressedTexture(assimpTexture)
-                : NonCompressedTexture(assimpTexture);
+                ? ConvertCompressedTexture(assimpTexture)
+                : ConvertNonCompressedTexture(assimpTexture);
 
     }
 

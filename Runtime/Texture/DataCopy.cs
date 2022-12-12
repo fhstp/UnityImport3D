@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityTexture = UnityEngine.Texture2D;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
-namespace At.Ac.FhStp.Import3D.DataCopy
+namespace At.Ac.FhStp.Import3D.Texture
 {
 
-    internal static class Texture2D
+    internal static class DataCopy
     {
 
         internal static Task<Nothing> CopyTextureBytes(

@@ -1,31 +1,27 @@
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityObject = UnityEngine.Object;
+using AssimpTexture = Assimp.EmbeddedTexture;
+using static At.Ac.FhStp.Import3D.Texture.ModelConversion;
+using static At.Ac.FhStp.Import3D.Texture.Instantiation;
 using static At.Ac.FhStp.Import3D.TaskManagement;
-using static At.Ac.FhStp.Import3D.DataCopy.Common;
-using static At.Ac.FhStp.Import3D.DataCopy.Texture2D;
+using static At.Ac.FhStp.Import3D.Common.DataCopy;
+using static At.Ac.FhStp.Import3D.Texture.DataCopy;
 
-namespace At.Ac.FhStp.Import3D
+namespace At.Ac.FhStp.Import3D.Texture
 {
 
-    internal static class Instantiate
+    internal static class Import
     {
 
-        private static Task<Texture2D> MakeTexture2DWithSize(
-            int width, int height) =>
-            Task.FromResult(new Texture2D(width, height));
-
-        private static Task<Texture2D> MakeEmptyTexture2D() =>
-            MakeTexture2DWithSize(0, 0);
-
-        internal static async Task<Texture2D> Texture2D(TextureModel model)
+        internal static async Task<Texture2D> ImportTexture(AssimpTexture assimpTexture)
         {
+            var model = ConvertToModel(assimpTexture);
             switch (model)
             {
                 case CompressedTextureModel compressed:
                 {
-                    var texture = await MakeEmptyTexture2D();
+                    var texture = await EmptyTexture2D();
                     await InParallel(
                         CopyName(model, texture),
                         CopyTextureBytes(compressed, texture));
@@ -33,7 +29,7 @@ namespace At.Ac.FhStp.Import3D
                 }
                 case NonCompressedTextureModel nonCompressed:
                 {
-                    var texture = await MakeTexture2DWithSize(
+                    var texture = await Texture2DWithSize(
                         nonCompressed.Width, nonCompressed.Height);
                     await InParallel(
                         CopyName(model, texture),
