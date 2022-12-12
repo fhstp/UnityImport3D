@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using UnityEngine;
 using AssimpMesh = Assimp.Mesh;
 using static At.Ac.FhStp.Import3D.Meshes.Instantiation;
 using static At.Ac.FhStp.Import3D.Meshes.ModelConversion;
@@ -12,7 +13,7 @@ namespace At.Ac.FhStp.Import3D.Meshes
     internal static class Import
     {
 
-        internal static async Task<UnityEngine.Mesh> ImportMesh(AssimpMesh assimpMesh)
+        internal static async Task<Mesh> ImportMesh(AssimpMesh assimpMesh)
         {
             var model = await InBackground(() => ConvertToModel(assimpMesh));
             var mesh = await MakeEmptyMesh();

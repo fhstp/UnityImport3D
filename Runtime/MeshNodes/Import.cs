@@ -16,13 +16,13 @@ namespace At.Ac.FhStp.Import3D.MeshNodes
         {
             var mesh = await meshCache.Resolve(meshIndex);
             var material = new Material(Shader.Find("Standard"));
-            
+
             var gameObject = await MakeGameObject(mesh.name);
 
             await InParallel(
                 CopyMesh(mesh, gameObject),
                 CopyMaterial(material, gameObject));
-            
+
             return gameObject;
         }
 

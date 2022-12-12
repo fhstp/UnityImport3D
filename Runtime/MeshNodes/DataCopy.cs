@@ -10,15 +10,15 @@ namespace At.Ac.FhStp.Import3D.MeshNodes
     {
 
         internal static Task<Nothing> CopyMesh(
-            UnityEngine.Mesh mesh, GameObject gameObject) =>
+            Mesh mesh, GameObject gameObject) =>
             DoAsync(() =>
             {
                 var meshFilter = gameObject.AddComponent<MeshFilter>();
                 meshFilter.mesh = mesh;
             });
-        
+
         internal static Task<Nothing> CopyMaterial(
-            UnityEngine.Material material, GameObject gameObject) =>
+            Material material, GameObject gameObject) =>
             DoAsync(() =>
             {
                 var meshRenderer = gameObject.AddComponent<MeshRenderer>();

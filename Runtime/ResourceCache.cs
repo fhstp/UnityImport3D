@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D
 {
@@ -26,10 +27,10 @@ namespace At.Ac.FhStp.Import3D
 
     }
 
-    internal class MeshCache : ResourceCache<int, UnityEngine.Mesh>
+    internal class MeshCache : ResourceCache<int, Mesh>
     {
 
-        public MeshCache(Func<int, Task<UnityEngine.Mesh>> startImport)
+        public MeshCache(Func<int, Task<Mesh>> startImport)
             : base(startImport) { }
 
     }

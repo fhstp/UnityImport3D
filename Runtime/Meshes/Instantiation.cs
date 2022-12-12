@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using UnityEngine;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
 namespace At.Ac.FhStp.Import3D.Meshes
@@ -7,8 +8,8 @@ namespace At.Ac.FhStp.Import3D.Meshes
     internal static class Instantiation
     {
 
-        internal static Task<UnityEngine.Mesh> MakeEmptyMesh() =>
-            CalcAsync(() => new UnityEngine.Mesh());
+        internal static Task<Mesh> MakeEmptyMesh() =>
+            CalcAsync(() => new Mesh());
 
     }
 

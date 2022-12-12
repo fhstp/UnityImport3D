@@ -28,7 +28,7 @@ namespace At.Ac.FhStp.Import3D.Meshes
 
             var normals = new Lazy<Vector3[]>(
                 () => assimpMesh.Normals.Select(ConvertVector).ToArray());
-            
+
             return new MeshModel(assimpMesh.Name, vertices, triangles, normals);
         }
 
