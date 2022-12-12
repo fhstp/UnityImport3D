@@ -21,7 +21,7 @@ namespace At.Ac.FhStp.Import3D.Texture
             {
                 case CompressedTextureModel compressed:
                 {
-                    var texture = await EmptyTexture2D();
+                    var texture = await MakeEmptyTexture2D();
                     await InParallel(
                         CopyName(model, texture),
                         CopyTextureBytes(compressed, texture));
@@ -29,7 +29,7 @@ namespace At.Ac.FhStp.Import3D.Texture
                 }
                 case NonCompressedTextureModel nonCompressed:
                 {
-                    var texture = await Texture2DWithSize(
+                    var texture = await MakeTexture2DWithSize(
                         nonCompressed.Width, nonCompressed.Height);
                     await InParallel(
                         CopyName(model, texture),
