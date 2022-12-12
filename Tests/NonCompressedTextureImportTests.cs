@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
 using AssimpTexel = Assimp.Texel;
-using static At.Ac.FhStp.Import3D.Texture.AssimpTextureBuilding;
+using static At.Ac.FhStp.Import3D.AssimpTextureBuilding;
 using static At.Ac.FhStp.Import3D.Texture.Import;
 
-namespace At.Ac.FhStp.Import3D.Texture
+namespace At.Ac.FhStp.Import3D
 {
 
-    public class NonCompressedImportTests
+    public class NonCompressedTextureImportTests
     {
 
         [Test]

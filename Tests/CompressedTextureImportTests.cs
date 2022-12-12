@@ -2,14 +2,14 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static At.Ac.FhStp.Import3D.Texture.AssimpTextureBuilding;
+using static At.Ac.FhStp.Import3D.AssimpTextureBuilding;
 using static At.Ac.FhStp.Import3D.Texture.Import;
 
-namespace At.Ac.FhStp.Import3D.Texture
+namespace At.Ac.FhStp.Import3D
 {
 
     [RequiresPlayMode]
-    public class CompressedImportTests
+    public class CompressedTextureImportTests
     {
 
         [Test]

@@ -3,7 +3,7 @@ using UnityEngine;
 using AssimpTexel = Assimp.Texel;
 using AssimpEmbeddedTexture = Assimp.EmbeddedTexture;
 
-namespace At.Ac.FhStp.Import3D.Texture
+namespace At.Ac.FhStp.Import3D
 {
 
     internal static class AssimpTextureBuilding
