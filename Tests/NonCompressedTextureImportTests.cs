@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using AssimpTexel = Assimp.Texel;
 using static At.Ac.FhStp.Import3D.AssimpTextureBuilding;
-using static At.Ac.FhStp.Import3D.Texture.Import;
+using static At.Ac.FhStp.Import3D.Textures.Import;
 
 namespace At.Ac.FhStp.Import3D
 {

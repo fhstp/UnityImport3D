@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Dev.ComradeVanti;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
-namespace At.Ac.FhStp.Import3D.Mesh
+namespace At.Ac.FhStp.Import3D.Meshes
 {
 
     internal static class DataCopy

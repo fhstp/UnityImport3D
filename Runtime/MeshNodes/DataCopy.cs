@@ -3,7 +3,7 @@ using Dev.ComradeVanti;
 using UnityEngine;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
-namespace At.Ac.FhStp.Import3D.MeshNode
+namespace At.Ac.FhStp.Import3D.MeshNodes
 {
 
     internal static class DataCopy

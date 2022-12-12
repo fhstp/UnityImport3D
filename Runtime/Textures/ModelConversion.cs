@@ -5,7 +5,7 @@ using UnityEngine;
 using AssimpEmbeddedTexture = Assimp.EmbeddedTexture;
 using AssimpTexel = Assimp.Texel;
 
-namespace At.Ac.FhStp.Import3D.Texture
+namespace At.Ac.FhStp.Import3D.Textures
 {
 
     internal static class ModelConversion

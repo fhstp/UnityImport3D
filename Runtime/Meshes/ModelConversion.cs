@@ -6,7 +6,7 @@ using AssimpMesh = Assimp.Mesh;
 using AssimpVector = Assimp.Vector3D;
 using AssimpFace = Assimp.Face;
 
-namespace At.Ac.FhStp.Import3D.Mesh
+namespace At.Ac.FhStp.Import3D.Meshes
 {
 
     internal static class ModelConversion

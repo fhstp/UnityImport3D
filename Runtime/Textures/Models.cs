@@ -1,7 +1,7 @@
 using System.Collections.Immutable;
 using UnityEngine;
 
-namespace At.Ac.FhStp.Import3D.Texture
+namespace At.Ac.FhStp.Import3D.Textures
 {
 
     internal abstract class TextureModel : INamedModel

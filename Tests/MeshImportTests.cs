@@ -5,7 +5,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static At.Ac.FhStp.Import3D.AssimpMeshBuilding;
-using static At.Ac.FhStp.Import3D.Mesh.Import;
+using static At.Ac.FhStp.Import3D.Meshes.Import;
 
 namespace At.Ac.FhStp.Import3D
 {

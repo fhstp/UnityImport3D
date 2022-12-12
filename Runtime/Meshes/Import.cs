@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using AssimpMesh = Assimp.Mesh;
-using static At.Ac.FhStp.Import3D.Mesh.Instantiation;
-using static At.Ac.FhStp.Import3D.Mesh.ModelConversion;
+using static At.Ac.FhStp.Import3D.Meshes.Instantiation;
+using static At.Ac.FhStp.Import3D.Meshes.ModelConversion;
 using static At.Ac.FhStp.Import3D.Common.DataCopy;
-using static At.Ac.FhStp.Import3D.Mesh.DataCopy;
+using static At.Ac.FhStp.Import3D.Meshes.DataCopy;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
-namespace At.Ac.FhStp.Import3D.Mesh
+namespace At.Ac.FhStp.Import3D.Meshes
 {
 
     internal static class Import

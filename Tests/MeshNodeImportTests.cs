@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static At.Ac.FhStp.Import3D.MeshNode.Import;
+using static At.Ac.FhStp.Import3D.MeshNodes.Import;
 
 namespace At.Ac.FhStp.Import3D
 {

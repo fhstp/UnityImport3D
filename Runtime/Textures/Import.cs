@@ -2,13 +2,13 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using AssimpTexture = Assimp.EmbeddedTexture;
-using static At.Ac.FhStp.Import3D.Texture.ModelConversion;
-using static At.Ac.FhStp.Import3D.Texture.Instantiation;
+using static At.Ac.FhStp.Import3D.Textures.ModelConversion;
+using static At.Ac.FhStp.Import3D.Textures.Instantiation;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 using static At.Ac.FhStp.Import3D.Common.DataCopy;
-using static At.Ac.FhStp.Import3D.Texture.DataCopy;
+using static At.Ac.FhStp.Import3D.Textures.DataCopy;
 
-namespace At.Ac.FhStp.Import3D.Texture
+namespace At.Ac.FhStp.Import3D.Textures
 {
 
     internal static class Import

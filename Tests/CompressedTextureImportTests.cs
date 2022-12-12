@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static At.Ac.FhStp.Import3D.AssimpTextureBuilding;
-using static At.Ac.FhStp.Import3D.Texture.Import;
+using static At.Ac.FhStp.Import3D.Textures.Import;
 
 namespace At.Ac.FhStp.Import3D
 {

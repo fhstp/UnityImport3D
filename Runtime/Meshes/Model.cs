@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace At.Ac.FhStp.Import3D.Mesh
+namespace At.Ac.FhStp.Import3D.Meshes
 {
 
     internal class MeshModel : INamedModel

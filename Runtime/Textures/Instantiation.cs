@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityObject = UnityEngine.Object;
 using static At.Ac.FhStp.Import3D.TaskManagement;
 
-namespace At.Ac.FhStp.Import3D.Texture
+namespace At.Ac.FhStp.Import3D.Textures
 {
 
     internal static class Instantiation
