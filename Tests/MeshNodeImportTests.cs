@@ -11,13 +11,13 @@ namespace At.Ac.FhStp.Import3D
     public class MeshNodeImportTests
     {
 
-        private readonly UnityEngine.Mesh mesh;
+        private readonly Mesh mesh;
         private readonly MeshCache meshCache;
 
 
         public MeshNodeImportTests()
         {
-            mesh = new UnityEngine.Mesh
+            mesh = new Mesh
             {
                 name = "My Mesh"
             };
@@ -43,7 +43,7 @@ namespace At.Ac.FhStp.Import3D
 
             Assert.AreEqual(mesh, meshFilter.mesh);
         }
-        
+
         [Test]
         public async Task MeshNode_Has_MeshRenderer_With_Default_Material()
         {
@@ -51,7 +51,7 @@ namespace At.Ac.FhStp.Import3D
 
             var meshRenderer = meshNode.GetComponent<MeshRenderer>();
             Assert.True(meshRenderer, "Has mesh-renderer");
-            
+
             Assert.True(meshRenderer.material);
         }
 

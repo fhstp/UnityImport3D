@@ -1,25 +1,25 @@
 {
-    "name": "At.Ac.FhStp.Import3D.Tests",
-    "rootNamespace": "At.Ac.FhStp.Import3D",
-    "references": [
-        "UnityEditor.TestRunner",
-        "UnityEngine.TestRunner",
-        "At.Ac.FhStp.Import3D"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll",
-        "AssimpNet.dll",
-        "System.Collections.Immutable.dll",
-        "System.Memory.dll"
-    ],
-    "autoReferenced": false,
-    "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
-    ],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "At.Ac.FhStp.Import3D.Tests",
+  "rootNamespace": "At.Ac.FhStp.Import3D",
+  "references": [
+    "UnityEditor.TestRunner",
+    "UnityEngine.TestRunner",
+    "At.Ac.FhStp.Import3D"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll",
+    "AssimpNet.dll",
+    "System.Collections.Immutable.dll",
+    "System.Memory.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
 }
