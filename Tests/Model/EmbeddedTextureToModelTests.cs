@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -23,14 +22,14 @@ namespace At.Ac.FhStp.Import3D
                                       MakeBlackTexels(width, height), name);
 
         [Test]
-        public async Task CompressedTexture_Model_Name_Is_Assimp_Filename_Without_Extension()
+        public void CompressedTexture_Model_Name_Is_Assimp_Filename_Without_Extension()
         {
             const string fileNameWithoutExtension = "file";
             var fileName = $"{fileNameWithoutExtension}.png";
             var assimpTexture = new AssimpEmbeddedTexture(
                 "png", new byte[] { 0x1, 0x2, 0x3, 0x4 }, fileName);
 
-            var model = await AssimpToModel.EmbeddedTexture(assimpTexture);
+            var model = AssimpToModel.EmbeddedTexture(assimpTexture);
 
             if (model is CompressedTextureModel compressed)
                 Assert.AreEqual(fileNameWithoutExtension, compressed.Name);
@@ -39,13 +38,13 @@ namespace At.Ac.FhStp.Import3D
         }
 
         [Test]
-        public async Task CompressedTexture_Model_Bytes_Are_Assimp_Bytes()
+        public void CompressedTexture_Model_Bytes_Are_Assimp_Bytes()
         {
             var bytes = new byte[] { 0x1, 0x2, 0x3, 0x4 };
             var assimpTexture = new AssimpEmbeddedTexture(
                 "png", bytes, "file.png");
 
-            var model = await AssimpToModel.EmbeddedTexture(assimpTexture);
+            var model = AssimpToModel.EmbeddedTexture(assimpTexture);
 
             if (model is CompressedTextureModel compressed)
                 Assert.AreEqual(bytes, compressed.Bytes);
@@ -55,13 +54,13 @@ namespace At.Ac.FhStp.Import3D
 
 
         [Test]
-        public async Task NonCompressedTexture_Model_Name_Is_Assimp_Filename_Without_Extension()
+        public void NonCompressedTexture_Model_Name_Is_Assimp_Filename_Without_Extension()
         {
             const string fileNameWithoutExtension = "file";
             var fileName = $"{fileNameWithoutExtension}.png";
             var assimpTexture = MakeBlackTexture(1, 1, fileName);
 
-            var model = await AssimpToModel.EmbeddedTexture(assimpTexture);
+            var model = AssimpToModel.EmbeddedTexture(assimpTexture);
 
             if (model is NonCompressedTextureModel nonCompressed)
                 Assert.AreEqual(fileNameWithoutExtension, nonCompressed.Name);
@@ -70,12 +69,12 @@ namespace At.Ac.FhStp.Import3D
         }
 
         [Test]
-        public async Task NonCompressedTexture_Model_Width_Is_Assimp_Width()
+        public void NonCompressedTexture_Model_Width_Is_Assimp_Width()
         {
             const int width = 2;
             var assimpTexture = MakeBlackTexture(width, 1, "file.png");
 
-            var model = await AssimpToModel.EmbeddedTexture(assimpTexture);
+            var model = AssimpToModel.EmbeddedTexture(assimpTexture);
 
             if (model is NonCompressedTextureModel nonCompressed)
                 Assert.AreEqual(width, nonCompressed.Width);
@@ -84,12 +83,12 @@ namespace At.Ac.FhStp.Import3D
         }
 
         [Test]
-        public async Task NonCompressedTexture_Model_Height_Is_Assimp_Height()
+        public void NonCompressedTexture_Model_Height_Is_Assimp_Height()
         {
             const int height = 2;
             var assimpTexture = MakeBlackTexture(1, height, "file.png");
 
-            var model = await AssimpToModel.EmbeddedTexture(assimpTexture);
+            var model = AssimpToModel.EmbeddedTexture(assimpTexture);
 
             if (model is NonCompressedTextureModel nonCompressed)
                 Assert.AreEqual(height, nonCompressed.Height);
@@ -98,7 +97,7 @@ namespace At.Ac.FhStp.Import3D
         }
 
         [Test]
-        public async Task NonCompressedTexture_Model_Pixels_Are_Assimp_Texels_As_Colors()
+        public void NonCompressedTexture_Model_Pixels_Are_Assimp_Texels_As_Colors()
         {
             const byte r = 10;
             const byte g = 20;
@@ -108,7 +107,7 @@ namespace At.Ac.FhStp.Import3D
             var pixels = new[] { new Color(r / 255f, g / 255f, b / 255f, a / 255f) };
             var assimpTexture = new AssimpEmbeddedTexture(1, 1, texels, "file.png");
 
-            var model = await AssimpToModel.EmbeddedTexture(assimpTexture);
+            var model = AssimpToModel.EmbeddedTexture(assimpTexture);
 
             if (model is NonCompressedTextureModel nonCompressed)
                 Assert.AreEqual(pixels, nonCompressed.Pixels);
