@@ -4,10 +4,10 @@ using UnityEngine;
 namespace At.Ac.FhStp.Import3D
 {
 
-    internal abstract class TextureModel
+    internal abstract class TextureModel : INamedModel
     {
 
-        internal string Name { get; }
+        public string Name { get; }
 
 
         protected TextureModel(string name) =>

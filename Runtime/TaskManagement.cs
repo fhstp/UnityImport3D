@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
 using Dev.ComradeVanti;
-using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D
 {
+
     internal static class TaskManagement
     {
 
@@ -18,5 +17,19 @@ namespace At.Ac.FhStp.Import3D
             return Nothing.atAll;
         }
 
+        internal static async Task<T> CalcAsync<T>(Func<T> func)
+        {
+            await Task.Yield();
+            return func();
+        }
+
+        internal static async Task<Nothing> DoAsync(Action action)
+        {
+            await Task.Yield();
+            action();
+            return Nothing.atAll;
+        }
+        
     }
+
 }
