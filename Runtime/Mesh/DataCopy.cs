@@ -9,26 +9,26 @@ namespace At.Ac.FhStp.Import3D.Mesh
     {
 
         internal static Task<Nothing> CopyVertices(MeshModel model, UnityEngine.Mesh mesh) =>
-            DoAsync(() =>
+            DoAsync(async () =>
             {
-                var vertices = model.Vertices.Value;
+                var vertices = await InBackground(() => model.Vertices.Value);
                 mesh.vertices = vertices;
             });
 
         internal static Task<Nothing> CopyTriangles(MeshModel model, UnityEngine.Mesh mesh) =>
-            DoAsync(() =>
+            DoAsync(async () =>
             {
-                var triangles = model.Triangles.Value;
+                var triangles = await InBackground(() => model.Triangles.Value);
                 mesh.triangles = triangles;
             });
 
         internal static Task<Nothing> CopyNormals(MeshModel model, UnityEngine.Mesh mesh) =>
-            DoAsync(() =>
+            DoAsync(async () =>
             {
-                var normals = model.Normals.Value;
+                var normals = await InBackground(() => model.Normals.Value);
                 mesh.normals = normals;
             });
-        
+
     }
 
 }

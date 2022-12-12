@@ -23,6 +23,12 @@ namespace At.Ac.FhStp.Import3D
             return func();
         }
 
+        internal static async Task<T> CalcAsync<T>(Func<Task<T>> func)
+        {
+            await Task.Yield();
+            return await func();
+        }
+
         internal static async Task<Nothing> DoAsync(Action action)
         {
             await Task.Yield();
@@ -30,7 +36,15 @@ namespace At.Ac.FhStp.Import3D
             return Nothing.atAll;
         }
 
-        internal static Task<T> InBackground<T>(Func<T> func) => 
+        internal static async Task<Nothing> DoAsync(Func<Task> action)
+        {
+            await Task.Yield();
+            await action();
+            return Nothing.atAll;
+        }
+
+
+        internal static Task<T> InBackground<T>(Func<T> func) =>
             Task.Run(func);
 
     }
