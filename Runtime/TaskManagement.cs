@@ -29,7 +29,10 @@ namespace At.Ac.FhStp.Import3D
             action();
             return Nothing.atAll;
         }
-        
+
+        internal static Task<T> InBackground<T>(Func<T> func) => 
+            Task.Run(func);
+
     }
 
 }

@@ -16,7 +16,7 @@ namespace At.Ac.FhStp.Import3D.Texture
 
         internal static async Task<Texture2D> ImportTexture(AssimpTexture assimpTexture)
         {
-            var model = ConvertToModel(assimpTexture);
+            var model = await InBackground(() => ConvertToModel(assimpTexture));
             switch (model)
             {
                 case CompressedTextureModel compressed:
