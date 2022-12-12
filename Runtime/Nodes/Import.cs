@@ -3,9 +3,9 @@ using UnityEngine;
 using AssimpMesh = Assimp.Mesh;
 using static At.Ac.FhStp.Import3D.Common.Instantiation;
 using static At.Ac.FhStp.Import3D.TaskManagement;
-using static At.Ac.FhStp.Import3D.MeshNodes.DataCopy;
+using static At.Ac.FhStp.Import3D.Nodes.DataCopy;
 
-namespace At.Ac.FhStp.Import3D.MeshNodes
+namespace At.Ac.FhStp.Import3D.Nodes
 {
 
     internal static class Import
