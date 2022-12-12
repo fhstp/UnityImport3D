@@ -17,7 +17,7 @@ namespace At.Ac.FhStp.Import3D.Texture
         private static float NormalizeByte01(byte b) =>
             b / 255f;
 
-        internal static Color ConvertToModel(AssimpTexel texel) =>
+        private static Color ConvertToModel(AssimpTexel texel) =>
             new Color(NormalizeByte01(texel.R),
                       NormalizeByte01(texel.G),
                       NormalizeByte01(texel.B),
