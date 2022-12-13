@@ -7,8 +7,10 @@ Check out the changelog [here](./CHANGELOG.md).
 ## Features
 
 Import3D supports most common 3D-model formats
-as it uses [Assimp](https://github.com/assimp/assimp) 
+as it uses [Assimp](https://github.com/assimp/assimp)
 internally.
+
+Imports a scene's node-structure and geometry. Materials and textures are not imported yet.
 
 ## Installation
 
