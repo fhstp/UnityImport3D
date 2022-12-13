@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Added
+
+- Root-node now has scene file-name as name
+
 ### Fixed
 
 - Missing 0.1.0 version header in changelog

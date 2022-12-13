@@ -1,3 +1,4 @@
+using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using AssimpScene = Assimp.Scene;
@@ -10,14 +11,18 @@ namespace At.Ac.FhStp.Import3D.Scenes
     internal static class Import
     {
 
-        internal static Task<GameObject> ImportScene(AssimpScene scene)
+        internal static async Task<GameObject> ImportScene(AssimpScene scene, string filePath)
         {
+            var sceneName = Path.GetFileNameWithoutExtension(filePath);
+            
             Task<Mesh> ImportMeshWithIndex(int index) =>
                 ImportMesh(scene.Meshes[index]);
             
             var meshCache = new MeshCache(ImportMeshWithIndex);
 
-            return ImportNode(scene.RootNode, meshCache);
+            var root = await ImportNode(scene.RootNode, meshCache);
+            root.name = sceneName;
+            return root;
         }
 
     }

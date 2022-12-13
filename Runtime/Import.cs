@@ -33,7 +33,7 @@ namespace At.Ac.FhStp.Import3D
         public static async Task<GameObject> SingleAsync(string path)
         {
             var assimpScene = await ImportSceneFile(path);
-            return await ImportScene(assimpScene);
+            return await ImportScene(assimpScene, path);
         }
 
     }
