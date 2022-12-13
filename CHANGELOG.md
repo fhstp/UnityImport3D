@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Added
+
+- Package keywords in manifest
+
 ### Fixed
 
 - Missing 0.2.0 version header in changelog

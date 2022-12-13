@@ -13,6 +13,10 @@
     "org.nuget.dev.comradevanti.nothing": "1.0.0"
   },
   "keywords": [
+    "import",
+    "3d-model",
+    "async",
+    "runtime"
   ],
   "hideInEditor": false
 }
