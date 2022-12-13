@@ -1,4 +1,5 @@
 # Import3D
+[![openupm](https://img.shields.io/npm/v/at.ac.fhstp.import3d?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/at.ac.fhstp.import3d/)
 
 An asynchronous runtime 3D-model importer for Unity
 
