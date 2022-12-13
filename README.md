@@ -49,6 +49,15 @@ the following scoped-registry if you choose to do so:
 }
 ```
 
+## Roadmap
+
+- Update to 2021
+- Texture import
+- Material import
+- Better error-handling
+- Optimizations
+- More build targets
+
 ## Compatibility
 
 Developed for/with Unity 2020.3
