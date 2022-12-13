@@ -14,6 +14,17 @@ internally.
 Imports a scene's node-structure and geometry.
 Materials and textures are not imported yet.
 
+## Targets
+
+Import3D uses the C-library [Assimp](https://github.com/assimp/assimp) 
+internally. Because of this, not all target devices are supported
+out of the box as binaries for these platforms have to built and included
+in the package.
+
+Currently Import3D supports the following platforms:
+
+- Windows
+
 ## Installation
 
 Best way to install is via [OpenUPM](https://openupm.com/)
