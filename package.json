@@ -1,6 +1,6 @@
 {
   "name": "at.ac.fhstp.import3d",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "displayName": "Import3D",
   "description": "An asynchronous runtime 3D-model importer for Unity",
   "unity": "2020.3",
