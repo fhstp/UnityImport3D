@@ -1,4 +1,5 @@
 # Import3D
+
 [![openupm](https://img.shields.io/npm/v/at.ac.fhstp.import3d?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/at.ac.fhstp.import3d/)
 
 An asynchronous runtime 3D-model importer for Unity
@@ -16,7 +17,7 @@ Materials and textures are not imported yet.
 
 ## Targets
 
-Import3D uses the C-library [Assimp](https://github.com/assimp/assimp) 
+Import3D uses the C-library [Assimp](https://github.com/assimp/assimp)
 internally. Because of this, not all target devices are supported
 out of the box as binaries for these platforms have to built and included
 in the package.
@@ -33,6 +34,7 @@ using `openupm add at.ac.fhstp.import3d`.
 You can also install manually as a git-dependency from
 `https://github.com/fhstp/UnityImport3D.git`. Make sure to add
 the following scoped-registry if you choose to do so:
+
 ```json
 {
   "name": "package.openupm.com",
@@ -48,6 +50,28 @@ the following scoped-registry if you choose to do so:
   ]
 }
 ```
+
+**Important Note**  
+The target version of Unity has an issue with package-version validation which
+produces the following errors on installation:
+
+```
+Assembly 'Library/ScriptAssemblies/At.Ac.FhStp.Import3D.dll' will not be loaded due to errors:
+Reference has errors 'System.Collections.Immutable'.
+
+Assembly 'Packages/org.nuget.system.memory/System.Memory.dll' will not be loaded due to errors:
+System.Memory references strong named System.Runtime.CompilerServices.Unsafe Assembly references: 4.0.4.1 Found in project: 6.0.0.0.
+Assembly Version Validation can be disabled in Player Settings "Assembly Version Validation"
+System.Memory references strong named System.Buffers Assembly references: 4.0.2.0 Found in project: 4.0.3.0.
+Assembly Version Validation can be disabled in Player Settings "Assembly Version Validation"
+
+Assembly 'Packages/org.nuget.system.collections.immutable/System.Collections.Immutable.dll' will not be loaded due to errors:
+Reference has errors 'System.Memory'.
+```
+
+There is no actual problem with the package, this is
+a [known issue](https://forum.unity.com/threads/dll-reference-compiler-error.858103/)
+. To get rid of the error disable `Validate References` in the player-settings.
 
 ## Roadmap
 
