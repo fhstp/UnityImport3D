@@ -1,6 +1,6 @@
 ﻿
 # Some global gitignores ignore meta files by default. Negate that
-!*.
+!*.meta
 
 # Some global gitignores ignore folders with ~ in them
 

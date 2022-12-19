@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Fixed
+
+- Missing meta files
+
 ### Added
 
 - Note about assembly validation in readme
