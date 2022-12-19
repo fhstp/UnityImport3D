@@ -70,8 +70,9 @@ Reference has errors 'System.Memory'.
 ```
 
 There is no actual problem with the package, this is
-a [known issue](https://forum.unity.com/threads/dll-reference-compiler-error.858103/)
-. To get rid of the error disable `Validate References` in the player-settings.
+a [known Unity-issue](https://forum.unity.com/threads/dll-reference-compiler-error.858103/)
+. To get rid of the error disable `Assembly Version Validation` in the
+player-settings.
 
 ## Roadmap
 
