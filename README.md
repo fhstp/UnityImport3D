@@ -52,7 +52,7 @@ the following scoped-registry if you choose to do so:
 ```
 
 **Important Note**  
-The target version of Unity has an issue with package-version validation which
+The target version of Unity has an issue with assembly-version validation which
 produces the following errors on installation:
 
 ```

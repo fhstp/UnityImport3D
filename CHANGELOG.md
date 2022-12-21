@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Fixed
+
+- Wrong term in readme
+
 ## 0.4.0
 
 ### Fixed
