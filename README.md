@@ -24,7 +24,7 @@ in the package.
 
 Currently Import3D supports the following platforms:
 
-- Windows
+- Windows x32 / x64
 
 ## Installation
 
