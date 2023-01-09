@@ -10,10 +10,8 @@ using static At.Ac.FhStp.Import3D.TaskManagement;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     internal static class AssimpLoader
     {
-
         [SuppressMessage("ReSharper", "BitwiseOperatorOnEnumWithoutFlags")]
         private const RuntimePlatform EditorPlatforms =
             RuntimePlatform.LinuxEditor
@@ -50,16 +48,16 @@ namespace At.Ac.FhStp.Import3D
             {
                 var nativesPath = Path.Combine(EditorNativesPath, "win");
                 return new LibPaths(
-                    new LibPath(Path.Combine(nativesPath, "x86")),
-                    new LibPath(Path.Combine(nativesPath, "x86_64")));
+                    Path.Combine(nativesPath, "x86", "assimp.dll"),
+                    Path.Combine(nativesPath, "x86_64", "assimp.dll"));
             }
 
             LibPaths ForWindowsPlayer()
             {
                 var pluginsPath = PlayerPluginsPath;
                 return new LibPaths(
-                    new LibPath(Path.Combine(pluginsPath, "x86")),
-                    new LibPath(Path.Combine(pluginsPath, "x86_64")));
+                    Path.Combine(pluginsPath, "x86", "assimp.dll"),
+                    Path.Combine(pluginsPath, "x86_64", "assimp.dll"));
             }
 
 
@@ -82,21 +80,16 @@ namespace At.Ac.FhStp.Import3D
             }
 
             var paths = maybePaths.Value;
-            library.Resolver.SetOverrideLibraryName64(paths.X64.NameOverride);
-            library.Resolver.SetOverrideLibraryName32(paths.X32.NameOverride);
-            library.Resolver.SetProbingPaths64(paths.X64.Path);
-            library.Resolver.SetProbingPaths32(paths.X32.Path);
-            return library.LoadLibrary();
+            return library.LoadLibrary(paths.X32, paths.X64);
         }
 
         private static bool ConfirmLibraryLoadedAndConfigured()
         {
-            if (prevLoadAttemptSucceeded == null)
-            {
-                var library = AssimpLibrary.Instance;
-                prevLoadAttemptSucceeded =
-                    library.IsLibraryLoaded || AttemptLoad(library);
-            }
+            if (prevLoadAttemptSucceeded != null) return prevLoadAttemptSucceeded.Value;
+
+            var library = AssimpLibrary.Instance;
+            prevLoadAttemptSucceeded =
+                library.IsLibraryLoaded || AttemptLoad(library);
 
             return prevLoadAttemptSucceeded.Value;
         }
@@ -118,39 +111,21 @@ namespace At.Ac.FhStp.Import3D
 
         private struct LibPaths
         {
+            public string X32 { get; }
 
-            public LibPath X32 { get; }
-
-            public LibPath X64 { get; }
+            public string X64 { get; }
 
 
-            public LibPaths(LibPath x32, LibPath x64)
+            public LibPaths(string x32, string x64)
             {
                 X32 = x32;
                 X64 = x64;
             }
 
-            public static LibPaths ForBoth(LibPath path) =>
-                new LibPaths(path, path);
-
-        }
-
-        private struct LibPath
-        {
-
-            [NotNull] public string Path { get; }
-
-            [CanBeNull] public string NameOverride { get; }
-
-
-            public LibPath([NotNull] string path, [CanBeNull] string nameOverride = null)
+            public static LibPaths ForBoth(string path)
             {
-                Path = path;
-                NameOverride = nameOverride;
+                return new LibPaths(path, path);
             }
-
         }
-
     }
-
 }
