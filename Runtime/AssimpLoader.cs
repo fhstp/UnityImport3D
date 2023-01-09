@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using Assimp;
 using Assimp.Unmanaged;
-using JetBrains.Annotations;
 using UnityEngine;
 using AssimpScene = Assimp.Scene;
 using static At.Ac.FhStp.Import3D.TaskManagement;
@@ -60,11 +59,18 @@ namespace At.Ac.FhStp.Import3D
                     Path.Combine(pluginsPath, "x86_64", "assimp.dll"));
             }
 
+            LibPaths ForAndroidPlayer()
+            {
+                // On Android its enough to specify the lib-name
+                // The OS finds the path on its own
+                return LibPaths.ForBoth("libassimp.so");
+            }
 
             return Application.platform switch
             {
                 RuntimePlatform.WindowsEditor => ForWindowsEditor(),
                 RuntimePlatform.WindowsPlayer => ForWindowsPlayer(),
+                RuntimePlatform.Android => ForAndroidPlayer(),
                 _ => null
             };
         }

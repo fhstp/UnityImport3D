@@ -25,6 +25,7 @@ in the package.
 Currently Import3D supports the following platforms:
 
 - Windows x32 / x64
+- Android v7 / arm64
 
 ## Installation
 
