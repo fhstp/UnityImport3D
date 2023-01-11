@@ -18,15 +18,16 @@ namespace At.Ac.FhStp.Import3D
         public static readonly ImportConfig Default =
             new ImportConfig
             {
-                AssimpPostProcessSteps = PostProcessSteps.Triangulate,
+                ExtraAssimpPostProcessSteps = PostProcessSteps.None,
                 SceneNameOverride = Opt.None<string>()
             };
 
         /// <summary>
-        ///     Post-process-steps that assimp applies during import
+        ///     Extra post-process-steps that assimp applies during import.
+        ///     Triangulate is enforced for every import by default
         /// </summary>
         /// <seealso href="https://documentation.help/assimp/postprocess_8h.html#a64795260b95f5a4b3f3dc1be4f52e410">Assimp documentation</seealso>
-        public PostProcessSteps AssimpPostProcessSteps { get; init; }
+        public PostProcessSteps ExtraAssimpPostProcessSteps { get; init; }
 
         /// <summary>
         ///     By default the name of the scene is taken to be name name of the imported file.

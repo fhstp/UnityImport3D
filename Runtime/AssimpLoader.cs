@@ -108,13 +108,13 @@ namespace At.Ac.FhStp.Import3D
         }
 
         internal static async Task<AssimpScene> LoadSceneFrom(string path,
-            PostProcessSteps postProcessSteps)
+            PostProcessSteps extraPostProcessSteps)
         {
             var ctx = MakeContext();
             var scene = await InBackground(
                 () => ctx.ImportFile(path,
                     //  PostProcessSteps.Triangulate is required
-                    postProcessSteps | PostProcessSteps.Triangulate));
+                    extraPostProcessSteps | PostProcessSteps.Triangulate));
             ctx.Dispose();
             return scene;
         }
