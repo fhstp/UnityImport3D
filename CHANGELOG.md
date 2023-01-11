@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Fixed
+
+- Readme claimed that win x32 was supported when that was not true
+
 ### Changed
 
 - Assembly-definition file-name to match assembly name
