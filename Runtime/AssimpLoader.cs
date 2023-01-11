@@ -27,7 +27,8 @@ namespace At.Ac.FhStp.Import3D
         {
             get
             {
-                var packagePath = Path.GetFullPath("Packages/at.ac.fhstp.import3d");
+                var packagePath =
+                    Path.GetFullPath("Packages/at.ac.fhstp.import3d");
                 var pluginsPath = Path.Combine(packagePath, "Plugins");
                 return Path.Combine(pluginsPath, "Assimp", "Native");
             }
@@ -79,7 +80,8 @@ namespace At.Ac.FhStp.Import3D
 
             if (maybePaths == null)
             {
-                Debug.LogError("Import3D does not support " + Application.platform);
+                Debug.LogError("Import3D does not support " +
+                               Application.platform);
                 return false;
             }
 
@@ -89,7 +91,8 @@ namespace At.Ac.FhStp.Import3D
 
         private static bool ConfirmLibraryLoadedAndConfigured()
         {
-            if (prevLoadAttemptSucceeded != null) return prevLoadAttemptSucceeded.Value;
+            if (prevLoadAttemptSucceeded != null)
+                return prevLoadAttemptSucceeded.Value;
 
             var library = AssimpLibrary.Instance;
             prevLoadAttemptSucceeded =
@@ -104,11 +107,14 @@ namespace At.Ac.FhStp.Import3D
             return new AssimpContext();
         }
 
-        internal static async Task<AssimpScene> LoadSceneFrom(string path)
+        internal static async Task<AssimpScene> LoadSceneFrom(string path,
+            PostProcessSteps postProcessSteps)
         {
             var ctx = MakeContext();
             var scene = await InBackground(
-                () => ctx.ImportFile(path, PostProcessSteps.Triangulate));
+                () => ctx.ImportFile(path,
+                    //  PostProcessSteps.Triangulate is required
+                    postProcessSteps | PostProcessSteps.Triangulate));
             ctx.Dispose();
             return scene;
         }
@@ -126,7 +132,8 @@ namespace At.Ac.FhStp.Import3D
                 X64 = x64;
             }
 
-            public static LibPaths ForBoth(string path) => new(path, path);
+            public static LibPaths ForBoth(string path) =>
+                new LibPaths(path, path);
         }
     }
 }

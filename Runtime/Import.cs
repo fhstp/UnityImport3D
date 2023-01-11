@@ -14,11 +14,23 @@ namespace At.Ac.FhStp.Import3D
         ///     Imports a 3D-model file from a given path
         /// </summary>
         /// <param name="path">The path to the file</param>
+        /// <param name="config">Configuration for this import</param>
         /// <returns>A task, producing the imported scene</returns>
-        public static async Task<GameObject> SingleAsync(string path)
+        public static async Task<GameObject> SingleAsync(string path,
+            ImportConfig config)
         {
-            var assimpScene = await AssimpLoader.LoadSceneFrom(path);
+            var assimpScene =
+                await AssimpLoader.LoadSceneFrom(path,
+                    config.AssimpPostProcessSteps);
             return await ImportScene(assimpScene, path);
         }
+
+        /// <summary>
+        ///     Imports a 3D-model file from a given path
+        /// </summary>
+        /// <param name="path">The path to the file</param>
+        /// <returns>A task, producing the imported scene</returns>
+        public static Task<GameObject> SingleAsync(string path) =>
+            SingleAsync(path, ImportConfig.Default);
     }
 }
