@@ -22,7 +22,7 @@ namespace At.Ac.FhStp.Import3D
             var assimpScene =
                 await AssimpLoader.LoadSceneFrom(path,
                     config.AssimpPostProcessSteps);
-            return await ImportScene(assimpScene, path);
+            return await ImportScene(assimpScene, path, config);
         }
 
         /// <summary>

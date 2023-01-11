@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Configure Assimp post-process-steps for imports
+- Configure scene-name
 
 ## 0.6.0
 
