@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Bump target Unity version to 2021.3
+- Remove assembly-validation warning as its no longer needed
 
 ## 0.5.1
 

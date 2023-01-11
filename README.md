@@ -52,29 +52,6 @@ the following scoped-registry if you choose to do so:
 }
 ```
 
-**Important Note**  
-The target version of Unity has an issue with assembly-version validation which
-produces the following errors on installation:
-
-```
-Assembly 'Library/ScriptAssemblies/At.Ac.FhStp.Import3D.dll' will not be loaded due to errors:
-Reference has errors 'System.Collections.Immutable'.
-
-Assembly 'Packages/org.nuget.system.memory/System.Memory.dll' will not be loaded due to errors:
-System.Memory references strong named System.Runtime.CompilerServices.Unsafe Assembly references: 4.0.4.1 Found in project: 6.0.0.0.
-Assembly Version Validation can be disabled in Player Settings "Assembly Version Validation"
-System.Memory references strong named System.Buffers Assembly references: 4.0.2.0 Found in project: 4.0.3.0.
-Assembly Version Validation can be disabled in Player Settings "Assembly Version Validation"
-
-Assembly 'Packages/org.nuget.system.collections.immutable/System.Collections.Immutable.dll' will not be loaded due to errors:
-Reference has errors 'System.Memory'.
-```
-
-There is no actual problem with the package, this is
-a [known Unity-issue](https://forum.unity.com/threads/dll-reference-compiler-error.858103/)
-. To get rid of the error disable `Assembly Version Validation` in the
-player-settings.
-
 ## Roadmap
 
 - Texture import
