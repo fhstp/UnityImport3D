@@ -5,6 +5,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+## 0.5.1
+
 ### Fixed
 
 - Readme claimed that win x32 was supported when that was not true
