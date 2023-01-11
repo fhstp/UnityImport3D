@@ -42,6 +42,9 @@ the following scoped-registry if you choose to do so:
   "url": "https://package.openupm.com",
   "scopes": [
     "com.openupm",
+    "dev.comradevanti.opt-unity",
+    "dev.comradevanti.rect-constraints",
+    "org.nuget.comradevanti.csharptools.opt",
     "org.nuget.dev.comradevanti.nothing",
     "org.nuget.system.buffers",
     "org.nuget.system.collections.immutable",

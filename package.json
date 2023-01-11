@@ -10,7 +10,8 @@
   "dependencies": {
     "com.unity.test-framework": "2.0.1-exp.2",
     "org.nuget.system.collections.immutable": "7.0.0",
-    "org.nuget.dev.comradevanti.nothing": "1.0.0"
+    "org.nuget.dev.comradevanti.nothing": "1.0.0",
+    "dev.comradevanti.opt-unity": "3.3.1"
   },
   "keywords": [
     "import",

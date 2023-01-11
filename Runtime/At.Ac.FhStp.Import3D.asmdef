@@ -1,14 +1,16 @@
 {
-  "name": "At.Ac.FhStp.Import3D",
-  "rootNamespace": "At.Ac.FhStp.Import3D",
-  "references": [],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "At.Ac.FhStp.Import3D",
+    "rootNamespace": "At.Ac.FhStp.Import3D",
+    "references": [
+        "GUID:abae1860b9cc9c84289013571e170b12"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
