@@ -4,10 +4,8 @@ using AssimpNode = Assimp.Node;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     internal static class AssimpNodeBuilding
     {
-
         internal static AssimpNode MakeTree(
             string name,
             IEnumerable<int> meshIndices,
@@ -29,7 +27,5 @@ namespace At.Ac.FhStp.Import3D
 
         internal static AssimpNode MakeLeaf(string name) =>
             MakeLeaf(name, Enumerable.Empty<int>());
-
     }
-
 }

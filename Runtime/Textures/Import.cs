@@ -10,10 +10,8 @@ using static At.Ac.FhStp.Import3D.Textures.DataCopy;
 
 namespace At.Ac.FhStp.Import3D.Textures
 {
-
     internal static class Import
     {
-
         internal static async Task<Texture2D> ImportTexture(AssimpTexture assimpTexture)
         {
             var model = await InBackground(() => ConvertToModel(assimpTexture));
@@ -39,7 +37,5 @@ namespace At.Ac.FhStp.Import3D.Textures
                 default: throw new ArgumentException("Unknown texture type!");
             }
         }
-
     }
-
 }

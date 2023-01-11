@@ -9,11 +9,9 @@ using static At.Ac.FhStp.Import3D.Meshes.Import;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     [RequiresPlayMode]
     public class MeshImportTests
     {
-
         [Test]
         public async Task Mesh_Name_Is_Assimp_Name()
         {
@@ -63,8 +61,8 @@ namespace At.Ac.FhStp.Import3D
             var triangles = mesh.triangles;
 
             Assert.AreEqual(6, triangles.Length, "Length");
-            Assert.AreEqual(new[] { 0, 1, 2 }, triangles.Skip(0).Take(3));
-            Assert.AreEqual(new[] { 1, 2, 3 }, triangles.Skip(3).Take(3));
+            Assert.AreEqual(new[] {0, 1, 2}, triangles.Skip(0).Take(3));
+            Assert.AreEqual(new[] {1, 2, 3}, triangles.Skip(3).Take(3));
         }
 
 
@@ -86,7 +84,5 @@ namespace At.Ac.FhStp.Import3D
             Assert.AreEqual(new Vector3(0, 0, 1), normals[2], "Normal 3");
             Assert.AreEqual(new Vector3(1, 1, 0), normals[3], "Normal 4");
         }
-
     }
-
 }

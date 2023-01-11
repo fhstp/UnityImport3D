@@ -7,10 +7,8 @@ using static At.Ac.FhStp.Import3D.TaskManagement;
 
 namespace At.Ac.FhStp.Import3D.Textures
 {
-
     internal static class DataCopy
     {
-
         internal static Task<Nothing> CopyTextureBytes(
             CompressedTextureModel model, UnityTexture texture) =>
             DoAsync(() => texture.LoadImage(model.Bytes.ToArray()));
@@ -22,7 +20,5 @@ namespace At.Ac.FhStp.Import3D.Textures
                 texture.SetPixels(model.Pixels.ToArray());
                 texture.Apply();
             });
-
     }
-
 }

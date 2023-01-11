@@ -9,10 +9,8 @@ using static At.Ac.FhStp.Import3D.TaskManagement;
 
 namespace At.Ac.FhStp.Import3D.Meshes
 {
-
     internal static class Import
     {
-
         internal static async Task<Mesh> ImportMeshFromModel(MeshModel model)
         {
             var mesh = await MakeEmptyMesh();
@@ -31,7 +29,5 @@ namespace At.Ac.FhStp.Import3D.Meshes
             var model = await InBackground(() => ConvertToModel(assimpMesh));
             return await ImportMeshFromModel(model);
         }
-
     }
-
 }

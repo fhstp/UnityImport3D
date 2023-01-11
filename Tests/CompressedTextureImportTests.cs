@@ -7,11 +7,9 @@ using static At.Ac.FhStp.Import3D.Textures.Import;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     [RequiresPlayMode]
     public class CompressedTextureImportTests
     {
-
         [Test]
         public async Task Texture_Name_Is_Assimp_Name()
         {
@@ -47,7 +45,5 @@ namespace At.Ac.FhStp.Import3D
 
             Assert.AreEqual(Color.green, texture.GetPixel(0, 0));
         }
-
     }
-
 }

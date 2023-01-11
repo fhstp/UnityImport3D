@@ -5,10 +5,8 @@ using static At.Ac.FhStp.Import3D.TaskManagement;
 
 namespace At.Ac.FhStp.Import3D.Nodes
 {
-
     internal static class DataCopy
     {
-
         internal static Task<Nothing> CopyMesh(
             Mesh mesh, GameObject gameObject) =>
             DoAsync(() =>
@@ -28,7 +26,5 @@ namespace At.Ac.FhStp.Import3D.Nodes
         internal static Task<Nothing> CopyRelationship(
             GameObject parent, GameObject child) =>
             DoAsync(() => child.transform.SetParent(parent.transform, true));
-
     }
-
 }

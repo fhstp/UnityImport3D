@@ -5,12 +5,10 @@ using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     internal abstract class ResourceCache<TKey, T>
     {
+        private readonly Dictionary<TKey, Task<T>> importTasks = new();
 
-        private readonly Dictionary<TKey, Task<T>> importTasks =
-            new Dictionary<TKey, Task<T>>();
         private readonly Func<TKey, Task<T>> startImport;
 
 
@@ -24,15 +22,13 @@ namespace At.Ac.FhStp.Import3D
                 importTasks[key] = startImport(key);
             return importTasks[key];
         }
-
     }
 
     internal class MeshCache : ResourceCache<int, Mesh>
     {
-
         public MeshCache(Func<int, Task<Mesh>> startImport)
-            : base(startImport) { }
-
+            : base(startImport)
+        {
+        }
     }
-
 }

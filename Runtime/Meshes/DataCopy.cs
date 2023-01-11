@@ -5,10 +5,8 @@ using static At.Ac.FhStp.Import3D.TaskManagement;
 
 namespace At.Ac.FhStp.Import3D.Meshes
 {
-
     internal static class DataCopy
     {
-
         internal static Task<Nothing> CopyVertices(MeshModel model, Mesh mesh) =>
             DoAsync(async () =>
             {
@@ -29,7 +27,5 @@ namespace At.Ac.FhStp.Import3D.Meshes
                 var normals = await InBackground(() => model.Normals.Value);
                 mesh.normals = normals;
             });
-
     }
-
 }

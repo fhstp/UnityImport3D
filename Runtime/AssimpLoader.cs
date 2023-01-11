@@ -59,12 +59,10 @@ namespace At.Ac.FhStp.Import3D
                     Path.Combine(pluginsPath, "x86_64", "assimp.dll"));
             }
 
-            LibPaths ForAndroidPlayer()
-            {
+            LibPaths ForAndroidPlayer() =>
                 // On Android its enough to specify the lib-name
                 // The OS finds the path on its own
-                return LibPaths.ForBoth("libassimp.so");
-            }
+                LibPaths.ForBoth("libassimp.so");
 
             return Application.platform switch
             {
@@ -128,10 +126,7 @@ namespace At.Ac.FhStp.Import3D
                 X64 = x64;
             }
 
-            public static LibPaths ForBoth(string path)
-            {
-                return new LibPaths(path, path);
-            }
+            public static LibPaths ForBoth(string path) => new(path, path);
         }
     }
 }

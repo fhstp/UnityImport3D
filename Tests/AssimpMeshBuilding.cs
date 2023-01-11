@@ -5,12 +5,9 @@ using AssimpMesh = Assimp.Mesh;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     internal static class AssimpMeshBuilding
     {
-
-        internal static AssimpMesh MakeEmptyMesh(string name) =>
-            new AssimpMesh(name);
+        internal static AssimpMesh MakeEmptyMesh(string name) => new(name);
 
         internal static AssimpMesh MakePointMesh(
             string name, IEnumerable<Vector3D> points)
@@ -53,10 +50,8 @@ namespace At.Ac.FhStp.Import3D
             Vector3D normal4)
         {
             var mesh = MakeQuad(name);
-            mesh.Normals.AddRange(new[] { normal1, normal2, normal3, normal4 });
+            mesh.Normals.AddRange(new[] {normal1, normal2, normal3, normal4});
             return mesh;
         }
-
     }
-
 }

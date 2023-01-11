@@ -6,10 +6,8 @@ using static At.Ac.FhStp.Import3D.Textures.Import;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     public class NonCompressedTextureImportTests
     {
-
         [Test]
         public async Task Texture_Name_Is_Assimp_Name_Without_Extension()
         {
@@ -47,7 +45,5 @@ namespace At.Ac.FhStp.Import3D
             Assert.AreEqual(10 / 255f, pixel.b, "B");
             Assert.AreEqual(40 / 255f, pixel.a, "A");
         }
-
     }
-
 }

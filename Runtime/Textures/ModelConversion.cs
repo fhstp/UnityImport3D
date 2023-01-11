@@ -7,10 +7,8 @@ using AssimpTexel = Assimp.Texel;
 
 namespace At.Ac.FhStp.Import3D.Textures
 {
-
     internal static class ModelConversion
     {
-
         private static string FileNameOf(AssimpEmbeddedTexture assimpTexture) =>
             Path.GetFileNameWithoutExtension(assimpTexture.Filename);
 
@@ -18,10 +16,10 @@ namespace At.Ac.FhStp.Import3D.Textures
             b / 255f;
 
         private static Color ConvertToModel(AssimpTexel texel) =>
-            new Color(NormalizeByte01(texel.R),
-                      NormalizeByte01(texel.G),
-                      NormalizeByte01(texel.B),
-                      NormalizeByte01(texel.A));
+            new(NormalizeByte01(texel.R),
+                NormalizeByte01(texel.G),
+                NormalizeByte01(texel.B),
+                NormalizeByte01(texel.A));
 
         private static TextureModel ConvertCompressedTexture(AssimpEmbeddedTexture assimpTexture)
         {
@@ -39,8 +37,8 @@ namespace At.Ac.FhStp.Import3D.Textures
             var width = assimpTexture.Width;
             var height = assimpTexture.Height;
             var pixels = assimpTexture.NonCompressedData
-                                      .Select(ConvertToModel)
-                                      .ToImmutableArray();
+                .Select(ConvertToModel)
+                .ToImmutableArray();
             return new NonCompressedTextureModel(name, width, height, pixels);
         }
 
@@ -48,7 +46,5 @@ namespace At.Ac.FhStp.Import3D.Textures
             assimpTexture.IsCompressed
                 ? ConvertCompressedTexture(assimpTexture)
                 : ConvertNonCompressedTexture(assimpTexture);
-
     }
-
 }

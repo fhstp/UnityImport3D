@@ -6,11 +6,9 @@ using static At.Ac.FhStp.Import3D.Nodes.Import;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     [RequiresPlayMode]
     public class MeshNodeImportTests
     {
-
         private readonly Mesh mesh;
         private readonly MeshCache meshCache;
 
@@ -54,7 +52,5 @@ namespace At.Ac.FhStp.Import3D
 
             Assert.True(meshRenderer.material);
         }
-
     }
-
 }

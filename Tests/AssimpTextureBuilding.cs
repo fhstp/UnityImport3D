@@ -5,10 +5,8 @@ using AssimpEmbeddedTexture = Assimp.EmbeddedTexture;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     internal static class AssimpTextureBuilding
     {
-
         private static AssimpTexel[] MakeSolidTexels(int width, int height, AssimpTexel texel) =>
             Enumerable.Repeat(texel, width * height).ToArray();
 
@@ -26,7 +24,8 @@ namespace At.Ac.FhStp.Import3D
             return bytes;
         }
 
-        internal static AssimpEmbeddedTexture MakeSolidColorTexture(string name, int width, int height, AssimpTexel texel)
+        internal static AssimpEmbeddedTexture MakeSolidColorTexture(string name, int width, int height,
+            AssimpTexel texel)
         {
             var texels = MakeSolidTexels(width, height, texel);
             return new AssimpEmbeddedTexture(width, height, texels, name);
@@ -35,8 +34,7 @@ namespace At.Ac.FhStp.Import3D
         internal static AssimpEmbeddedTexture MakeSolidBlackTexture(string name, int width, int height) =>
             MakeSolidColorTexture(name, width, height, new AssimpTexel(0, 0, 0, 255));
 
-        internal static AssimpEmbeddedTexture MakePngFromBytes(string name, byte[] bytes) =>
-            new AssimpEmbeddedTexture("png", bytes, name);
+        internal static AssimpEmbeddedTexture MakePngFromBytes(string name, byte[] bytes) => new("png", bytes, name);
 
         internal static AssimpEmbeddedTexture MakeColorPng(
             string name, int width, int height, Color color)
@@ -47,7 +45,5 @@ namespace At.Ac.FhStp.Import3D
 
         internal static AssimpEmbeddedTexture Make1x1Png(string name, Color color) =>
             MakeColorPng(name, 1, 1, color);
-
     }
-
 }

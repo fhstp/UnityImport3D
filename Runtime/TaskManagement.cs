@@ -5,10 +5,8 @@ using Dev.ComradeVanti;
 
 namespace At.Ac.FhStp.Import3D
 {
-
     internal static class TaskManagement
     {
-
         internal static readonly Task<Nothing> noResult =
             Task.FromResult(Nothing.atAll);
 
@@ -68,7 +66,5 @@ namespace At.Ac.FhStp.Import3D
 
         internal static Task<T> InBackground<T>(Func<T> func) =>
             Task.Run(func);
-
     }
-
 }

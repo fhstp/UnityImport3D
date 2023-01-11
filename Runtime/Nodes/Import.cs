@@ -10,10 +10,8 @@ using static At.Ac.FhStp.Import3D.Nodes.ModelConversion;
 
 namespace At.Ac.FhStp.Import3D.Nodes
 {
-
     internal static class Import
     {
-
         internal static async Task<GameObject> ImportMeshNode(
             int meshIndex, MeshCache meshCache)
         {
@@ -40,7 +38,7 @@ namespace At.Ac.FhStp.Import3D.Nodes
                     InParallel(model.MeshIndices.Select(i => ImportMeshNode(i, meshCache))));
 
                 await InParallel(childNodes.Concat(meshNodes)
-                                           .Select(child => CopyRelationship(gameObject, child)));
+                    .Select(child => CopyRelationship(gameObject, child)));
 
                 return gameObject;
             }
@@ -48,7 +46,5 @@ namespace At.Ac.FhStp.Import3D.Nodes
             var model = ConvertToModel(node);
             return ImportFromModel(model);
         }
-
     }
-
 }
