@@ -3,7 +3,7 @@
   "version": "0.5.1",
   "displayName": "Import3D",
   "description": "An asynchronous runtime 3D-model importer for Unity",
-  "unity": "2020.3",
+  "unity": "2021.3",
   "author": {
     "name": "Ramon Brullo"
   },

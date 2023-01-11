@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Changed
+
+- Bump target Unity version to 2021.3
+
 ## 0.5.1
 
 ### Fixed

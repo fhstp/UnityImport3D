@@ -77,7 +77,6 @@ player-settings.
 
 ## Roadmap
 
-- Update to 2021
 - Texture import
 - Material import
 - Better error-handling
@@ -86,4 +85,4 @@ player-settings.
 
 ## Compatibility
 
-Developed for/with Unity 2020.3
+Developed for/with Unity 2021.3
