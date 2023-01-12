@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Added
+
+- Configure scene parent-gameobject after import
+
 ## 0.6.1
 
 ### Added

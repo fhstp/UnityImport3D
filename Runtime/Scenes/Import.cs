@@ -13,7 +13,8 @@ namespace At.Ac.FhStp.Import3D.Scenes
         private static string MakeSceneNameFrom(string filePath) =>
             Path.GetFileNameWithoutExtension(filePath);
 
-        internal static async Task<GameObject> ImportScene(AssimpScene scene,
+        internal static async Task<GameObject> ImportScene(
+            AssimpScene scene,
             string filePath, ImportConfig config)
         {
             var sceneName = config.SceneNameOverride
@@ -26,6 +27,7 @@ namespace At.Ac.FhStp.Import3D.Scenes
 
             var root = await ImportNode(scene.RootNode, meshCache);
             root.name = sceneName;
+            config.Parent.Iter(it => root.transform.SetParent(it, false));
             return root;
         }
     }

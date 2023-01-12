@@ -1,5 +1,6 @@
 using Assimp;
 using ComradeVanti.CSharpTools;
+using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D
 {
@@ -13,13 +14,15 @@ namespace At.Ac.FhStp.Import3D
         ///     <list type="bullet">
         ///         <item>Uses no extra post-process steps</item>
         ///         <item>Uses the file-name for the scene-name</item>
+        ///         <item>Instantiated scene is not attached to any game-object</item>
         ///     </list>
         /// </summary>
         public static readonly ImportConfig Default =
             new ImportConfig
             {
                 ExtraAssimpPostProcessSteps = PostProcessSteps.None,
-                SceneNameOverride = Opt.None<string>()
+                SceneNameOverride = Opt.None<string>(),
+                Parent = Opt.None<Transform>()
             };
 
         /// <summary>
@@ -38,6 +41,11 @@ namespace At.Ac.FhStp.Import3D
         ///     If this property is set so Some string it will override this behaviour.
         /// </summary>
         public IOpt<string> SceneNameOverride { get; private init; }
+
+        /// <summary>
+        ///     A transform to parent the instantiated scene to
+        /// </summary>
+        public IOpt<Transform> Parent { get; private init; }
 
 
         /// <summary>
@@ -58,6 +66,16 @@ namespace At.Ac.FhStp.Import3D
         public ImportConfig WithSceneName(string name) => this with
         {
             SceneNameOverride = Opt.Some(name)
+        };
+
+        /// <summary>
+        ///     Sets the transform that instantiated scenes will be attached to
+        /// </summary>
+        /// <param name="transform">The transform</param>
+        /// <returns>The updated config</returns>
+        public ImportConfig WithParent(Transform transform) => this with
+        {
+            Parent = Opt.Some(transform)
         };
     }
 }
