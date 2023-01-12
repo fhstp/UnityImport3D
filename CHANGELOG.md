@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Configure scene parent-gameobject after import
+- Option to import only meshes from file
 
 ## 0.6.1
 
