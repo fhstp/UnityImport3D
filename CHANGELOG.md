@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Upcoming
 
+### Changed
+
+- Bump Opt-unity to 3.4.0
+
 ## 0.6.2
 
 ### Added
