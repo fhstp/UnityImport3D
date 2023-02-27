@@ -19,15 +19,16 @@ namespace At.Ac.FhStp.Import3D.Nodes
                 .ToImmutableArray();
             var meshIndices = assimpNode.MeshIndices.ToImmutableArray();
             assimpNode.Transform.Decompose(
-                out _, 
+                out var assimpScale, 
                 out var assimpRotation, 
                 out var assimpPosition);
 
             var position = ConvertVector(assimpPosition);
             var rotation = ConvertQuaternion(assimpRotation);
+            var scale = ConvertVector(assimpScale);
             
             return new GroupNodeModel(
-                assimpNode.Name, children, meshIndices, position, rotation);
+                assimpNode.Name, children, meshIndices, position, rotation, scale);
         }
     }
 }

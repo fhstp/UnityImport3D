@@ -43,7 +43,8 @@ namespace At.Ac.FhStp.Import3D.Nodes
 
                 await InParallel(
                     CopyPosition(model.Position, gameObject),
-                    CopyRotation(model.Rotation, gameObject));
+                    CopyRotation(model.Rotation, gameObject),
+                    CopyScale(model.Scale, gameObject));
                 
                 return gameObject;
             }
