@@ -42,7 +42,8 @@ namespace At.Ac.FhStp.Import3D.Nodes
                 await InParallel(allChildren.Select(child => CopyRelationship(gameObject, child)));
 
                 await InParallel(
-                    CopyPosition(model.Position, gameObject));
+                    CopyPosition(model.Position, gameObject),
+                    CopyRotation(model.Rotation, gameObject));
                 
                 return gameObject;
             }

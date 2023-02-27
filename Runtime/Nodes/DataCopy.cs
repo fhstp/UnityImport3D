@@ -30,5 +30,9 @@ namespace At.Ac.FhStp.Import3D.Nodes
         internal static Task<Nothing> CopyPosition(
             Vector3 position, GameObject gameObject) =>
             DoAsync(() => gameObject.transform.localPosition = position);
+        
+        internal static Task<Nothing> CopyRotation(
+            Quaternion quaternion, GameObject gameObject) =>
+            DoAsync(() => gameObject.transform.localRotation = quaternion);
     }
 }
