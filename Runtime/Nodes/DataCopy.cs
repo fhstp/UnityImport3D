@@ -25,6 +25,10 @@ namespace At.Ac.FhStp.Import3D.Nodes
 
         internal static Task<Nothing> CopyRelationship(
             GameObject parent, GameObject child) =>
-            DoAsync(() => child.transform.SetParent(parent.transform, true));
+            DoAsync(() => child.transform.SetParent(parent.transform, false));
+
+        internal static Task<Nothing> CopyPosition(
+            Vector3 position, GameObject gameObject) =>
+            DoAsync(() => gameObject.transform.localPosition = position);
     }
 }

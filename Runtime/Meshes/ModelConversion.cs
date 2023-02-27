@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static At.Ac.FhStp.Import3D.Conversion;
 using AssimpMesh = Assimp.Mesh;
 using AssimpVector = Assimp.Vector3D;
 using AssimpFace = Assimp.Face;
@@ -10,8 +11,7 @@ namespace At.Ac.FhStp.Import3D.Meshes
 {
     internal static class ModelConversion
     {
-        private static Vector3 ConvertVector(AssimpVector v) => new(v.X, v.Y, v.Z);
-
+        
         private static IEnumerable<int> FaceTriangles(AssimpFace face) =>
             face.Indices;
 

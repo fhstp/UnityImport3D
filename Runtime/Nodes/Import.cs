@@ -37,9 +37,13 @@ namespace At.Ac.FhStp.Import3D.Nodes
                     InParallel(model.Children.Select(ImportFromModel)),
                     InParallel(model.MeshIndices.Select(i => ImportMeshNode(i, meshCache))));
 
-                await InParallel(childNodes.Concat(meshNodes)
-                    .Select(child => CopyRelationship(gameObject, child)));
+                var allChildren = childNodes.Concat(meshNodes);
+                
+                await InParallel(allChildren.Select(child => CopyRelationship(gameObject, child)));
 
+                await InParallel(
+                    CopyPosition(model.Position, gameObject));
+                
                 return gameObject;
             }
 
