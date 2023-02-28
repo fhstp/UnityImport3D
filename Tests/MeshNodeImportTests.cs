@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using At.Ac.FhStp.Import3D.Nodes;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -10,7 +11,9 @@ namespace At.Ac.FhStp.Import3D
     public class MeshNodeImportTests
     {
         private readonly Mesh mesh;
+        private readonly Material material;
         private readonly MeshCache meshCache;
+        private readonly MaterialCache materialCache;
 
 
         public MeshNodeImportTests()
@@ -19,24 +22,28 @@ namespace At.Ac.FhStp.Import3D
             {
                 name = "My Mesh"
             };
+            material = new Material(Shader.Find("Standard"));
             meshCache = new MeshCache(_ => Task.FromResult(mesh));
+            materialCache = new MaterialCache(_ => Task.FromResult(material));
         }
 
 
         [Test]
         public async Task MeshNode_Name_Is_Mesh_Name()
         {
-            var meshNode = await ImportMeshNode(0, meshCache);
+            var meshNode = new MeshNode(0, 0);
+            var gameObject = await ImportMeshNode(meshNode, meshCache, materialCache);
 
-            Assert.AreEqual(mesh.name, meshNode.name);
+            Assert.AreEqual(mesh.name, gameObject.name);
         }
 
         [Test]
         public async Task MeshNode_Has_MeshFilter_With_Mesh()
         {
-            var meshNode = await ImportMeshNode(0, meshCache);
+            var meshNode = new MeshNode(0, 0);
+            var gameObject = await ImportMeshNode(meshNode, meshCache, materialCache);
 
-            var meshFilter = meshNode.GetComponent<MeshFilter>();
+            var meshFilter = gameObject.GetComponent<MeshFilter>();
             Assert.True(meshFilter, "Has mesh-filter");
 
             Assert.AreEqual(mesh, meshFilter.mesh);
@@ -45,9 +52,10 @@ namespace At.Ac.FhStp.Import3D
         [Test]
         public async Task MeshNode_Has_MeshRenderer_With_Default_Material()
         {
-            var meshNode = await ImportMeshNode(0, meshCache);
+            var meshNode = new MeshNode(0, 0);
+            var gameObject = await ImportMeshNode(meshNode, meshCache, materialCache);
 
-            var meshRenderer = meshNode.GetComponent<MeshRenderer>();
+            var meshRenderer = gameObject.GetComponent<MeshRenderer>();
             Assert.True(meshRenderer, "Has mesh-renderer");
 
             Assert.True(meshRenderer.material);

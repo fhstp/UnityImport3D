@@ -2,6 +2,7 @@ using System.IO;
 using System.Threading.Tasks;
 using ComradeVanti.CSharpTools;
 using UnityEngine;
+using static At.Ac.FhStp.Import3D.Materials.Import;
 using AssimpScene = Assimp.Scene;
 using static At.Ac.FhStp.Import3D.Meshes.Import;
 using static At.Ac.FhStp.Import3D.Nodes.Import;
@@ -22,10 +23,20 @@ namespace At.Ac.FhStp.Import3D.Scenes
 
             Task<Mesh> ImportMeshWithIndex(int index) =>
                 ImportMesh(scene.Meshes[index]);
+            
+            
+            Task<Material> ImportMaterialWithIndex(int index) =>
+                ImportMaterial(scene.Materials[index]);
 
             var meshCache = new MeshCache(ImportMeshWithIndex);
+            var materialCache = new MaterialCache(ImportMaterialWithIndex);
 
-            var root = await ImportNode(scene.RootNode, meshCache);
+            int ResolveMaterialIndex(int meshIndex) => 
+                scene.Meshes[meshIndex].MaterialIndex;
+
+            var root = await ImportNode(
+                scene.RootNode, ResolveMaterialIndex,
+                meshCache, materialCache);
             root.name = sceneName;
             config.Parent.Iter(it => root.transform.SetParent(it, false));
             return root;

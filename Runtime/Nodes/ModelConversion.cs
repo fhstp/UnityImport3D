@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using UnityEngine;
@@ -50,19 +52,25 @@ namespace At.Ac.FhStp.Import3D.Nodes
                 new Vector4(matrix.A3, matrix.B3, matrix.C3, matrix.D3),
                 new Vector4(matrix.A4, matrix.B4, matrix.C4, matrix.D4));
         
-        internal static GroupNodeModel ConvertToModel(AssimpNode assimpNode)
+        internal static GroupNodeModel ConvertToModel(
+            AssimpNode assimpNode, Func<int,int> resolveMaterialIndex)
         {
             var children = assimpNode.Children
-                .Select(ConvertToModel)
+                .Select(child => ConvertToModel(child, resolveMaterialIndex))
                 .ToImmutableArray();
-            var meshIndices = assimpNode.MeshIndices.ToImmutableArray();
+            var meshNodes = assimpNode.MeshIndices
+                .Select(meshIndex =>
+                {
+                    var materialIndex = resolveMaterialIndex(meshIndex);
+                    return new MeshNode(meshIndex, materialIndex);
+                }).ToImmutableArray();
             var matrix = ConvertMatrix(assimpNode.Transform);
             var position = PositionIn(matrix);
             var rotation = RotationIn(matrix);
             var scale = ScaleIn(matrix);
             
             return new GroupNodeModel(
-                assimpNode.Name, children, meshIndices, position, rotation, scale);
+                assimpNode.Name, children, meshNodes, position, rotation, scale);
         }
     }
 }

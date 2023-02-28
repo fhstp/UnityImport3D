@@ -31,4 +31,12 @@ namespace At.Ac.FhStp.Import3D
         {
         }
     }
+    
+    internal class MaterialCache : ResourceCache<int, Material>
+    {
+        public MaterialCache(Func<int, Task<Material>> startImport)
+            : base(startImport)
+        {
+        }
+    }
 }

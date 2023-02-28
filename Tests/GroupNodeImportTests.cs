@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace At.Ac.FhStp.Import3D
         private readonly Mesh mesh0;
         private readonly Mesh mesh1;
         private readonly MeshCache meshCache;
-
+        private readonly MaterialCache materialCache;
 
         public GroupNodeImportTests()
         {
@@ -29,7 +30,11 @@ namespace At.Ac.FhStp.Import3D
                     _ => throw new ArgumentException()
                 };
             });
+            materialCache = new MaterialCache(
+                _ => Task.FromResult(new Material(Shader.Find("Standard"))));
         }
+
+        int ResolveMaterialIndex(int meshIndex) => 0;
 
 
         [Test]
@@ -37,7 +42,7 @@ namespace At.Ac.FhStp.Import3D
         {
             var assimpNode = MakeLeaf("My Root");
 
-            var node = await ImportNode(assimpNode, meshCache);
+            var node = await ImportNode(assimpNode, ResolveMaterialIndex, meshCache, materialCache);
 
             Assert.AreEqual(assimpNode.Name, node.name);
         }
@@ -55,7 +60,7 @@ namespace At.Ac.FhStp.Import3D
                     })
                 });
 
-            var a = await ImportNode(assimpNode, meshCache);
+            var a = await ImportNode(assimpNode, ResolveMaterialIndex, meshCache, materialCache);
             Assert.True(a, "A");
             AssertChildCount(a, 2);
             AssertForChild(a, 1, c => AssertChildCount(c, 1));
@@ -76,7 +81,7 @@ namespace At.Ac.FhStp.Import3D
                     })
                 });
 
-            var a = await ImportNode(assimpNode, meshCache);
+            var a = await ImportNode(assimpNode, ResolveMaterialIndex, meshCache, materialCache);
             Assert.True(a, "A");
             AssertChildCount(a, 2);
 
@@ -92,8 +97,7 @@ namespace At.Ac.FhStp.Import3D
             });
         }
 
-        private static void AssertForChild(
-            GameObject g, int index, Action<GameObject> assert)
+        private static void AssertForChild(GameObject g, int index, Action<GameObject> assert)
         {
             var child = g.transform.GetChild(index);
             Assert.True(child, $"{g.name} has child at {index}");

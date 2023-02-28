@@ -3,15 +3,33 @@ using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D.Nodes
 {
+
+    internal class MeshNode
+    {
+        
+        public int MeshIndex { get; }
+        
+        public int MaterialIndex { get; }
+
+
+        public MeshNode(int meshIndex, int materialIndex)
+        {
+            MeshIndex = meshIndex;
+            MaterialIndex = materialIndex;
+        }
+    }
+    
     internal class GroupNodeModel : INamedModel
     {
         public GroupNodeModel(
-            string name, ImmutableArray<GroupNodeModel> children,
-            ImmutableArray<int> meshIndices, Vector3 position, Quaternion rotation, Vector3 scale)
+            string name, 
+            ImmutableArray<GroupNodeModel> children,
+            ImmutableArray<MeshNode> meshNodes, 
+            Vector3 position, Quaternion rotation, Vector3 scale)
         {
             Name = name;
             Children = children;
-            MeshIndices = meshIndices;
+            MeshNodes = meshNodes;
             Position = position;
             Rotation = rotation;
             Scale = scale;
@@ -19,7 +37,7 @@ namespace At.Ac.FhStp.Import3D.Nodes
 
         public ImmutableArray<GroupNodeModel> Children { get; }
 
-        public ImmutableArray<int> MeshIndices { get; }
+        public ImmutableArray<MeshNode> MeshNodes { get; }
         
         public Vector3 Position { get; }
         
