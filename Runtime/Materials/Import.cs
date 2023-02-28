@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 using static At.Ac.FhStp.Import3D.Common.DataCopy;
+using static At.Ac.FhStp.Import3D.Materials.DataCopy;
 using static At.Ac.FhStp.Import3D.Materials.Instantiation;
 using static At.Ac.FhStp.Import3D.Materials.ModelConversion;
 using static At.Ac.FhStp.Import3D.TaskManagement;
@@ -14,7 +15,9 @@ namespace At.Ac.FhStp.Import3D.Materials
         {
             var material = await MakeMaterial();
 
-            await InParallel(CopyName(model, material));
+            await InParallel(
+                CopyName(model, material),
+                CopyColor(model.Color, "_Color", material));
             
             return material;
         }
