@@ -15,6 +15,29 @@ internally.
 Imports a scene's node-structure and geometry.
 Materials and textures are not imported yet.
 
+## Usage
+
+Import functions are located on the static `Import` class.
+
+```csharp
+// using At.Ac.FhStp.Import3D
+
+// Import a single file asynchronously
+var importedGameObject = await Import.SingleAsync(filePath);
+```
+
+### Config
+
+Some properties of the import process can be configured using
+a `ImportConfig` object, which can be passed as a second argument
+to all import functions. Refer to the `ImportConfig` XML-docs to
+learn more.
+
+```csharp
+var config = ImportConfig.Default;
+_ = await Import.SingleAsync(filePath, config);
+```
+
 ## Targets
 
 Import3D uses the C-library [Assimp](https://github.com/assimp/assimp)
