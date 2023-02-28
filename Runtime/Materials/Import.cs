@@ -17,7 +17,8 @@ namespace At.Ac.FhStp.Import3D.Materials
 
             await InParallel(
                 CopyName(model, material),
-                CopyColor(model.Color, "_Color", material));
+                CopyColor(model.Color, "_Color", material),
+                model.IsTransparent ? SetTransparent(material) : SetOpaque(material));
             
             return material;
         }

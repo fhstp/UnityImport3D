@@ -8,7 +8,9 @@ namespace At.Ac.FhStp.Import3D.Materials
         
         public Color Color { get; }
 
-        
+        public bool IsTransparent => Color.a < 1;
+
+
         public MaterialModel(string name, Color color)
         {
             Name = name;
