@@ -11,13 +11,17 @@ namespace At.Ac.FhStp.Import3D.Materials
     internal static class Import
     {
         
+        private static readonly int color = Shader.PropertyToID("_Color");
+        private static readonly int specColor = Shader.PropertyToID("_SpecColor");
+        
         internal static async Task<Material> ImportMeshFromModel(MaterialModel model)
         {
             var material = await MakeMaterial();
 
             await InParallel(
                 CopyName(model, material),
-                CopyColor(model.Color, "_Color", material),
+                CopyColor(model.Color, color, material),
+                CopyColor(model.SpecularColor, specColor, material),
                 model.IsTransparent ? SetTransparent(material) : SetOpaque(material));
             
             return material;

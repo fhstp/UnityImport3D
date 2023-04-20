@@ -9,6 +9,9 @@ namespace At.Ac.FhStp.Import3D.Materials
             return new Color(color.R, color.G, color.B, color.A);
         }
 
+        private static Color MultRGB(this Color c, float f) =>
+            new Color(c.r * f, c.g * f, c.b * f, c.a);
+
         internal static MaterialModel ConvertToModel(Assimp.Material assimpMaterial)
         {
             var diffuse = assimpMaterial.HasColorDiffuse
@@ -20,7 +23,12 @@ namespace At.Ac.FhStp.Import3D.Materials
             var color = diffuse + ambient;
             color.a *= assimpMaterial.Opacity;
 
-            return new MaterialModel(assimpMaterial.Name, color);
+            var specular = assimpMaterial.HasColorSpecular
+                ? ConvertColor(assimpMaterial.ColorSpecular)
+                : Color.black;
+            specular = specular.MultRGB(assimpMaterial.ShininessStrength);
+
+            return new MaterialModel(assimpMaterial.Name, color, specular);
         }
     }
 }

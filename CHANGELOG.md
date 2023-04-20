@@ -13,6 +13,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Name
   - Albedo color
   - Opacity
+  - Specular color
 
 ### Changed
 

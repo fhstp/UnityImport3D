@@ -9,7 +9,7 @@ namespace At.Ac.FhStp.Import3D.Materials
     {
 
         private static readonly Lazy<Shader> standardShader = 
-            new Lazy<Shader>(() => Shader.Find("Standard"));
+            new Lazy<Shader>(() => Shader.Find("Standard (Specular setup)"));
 
 
         internal static Task<Material> MakeMaterial() =>

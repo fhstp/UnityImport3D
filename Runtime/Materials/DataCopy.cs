@@ -12,13 +12,13 @@ namespace At.Ac.FhStp.Import3D.Materials
         private static readonly int zWrite = Shader.PropertyToID("_ZWrite");
 
         internal static Task<Nothing> CopyColor(
-            Color color, string name, Material material) =>
-            DoAsync(() => material.SetColor(name, color));
+            Color color, int propId, Material material) =>
+            DoAsync(() => material.SetColor(propId, color));
         
         internal static Task<Nothing> CopyFloat(
-            float f, string name, Material material) =>
-            DoAsync(() => material.SetFloat(name, f));
-
+            float f, int propId, Material material) =>
+            DoAsync(() => material.SetFloat(propId, f));
+        
         internal static Task<Nothing> SetOpaque(Material material) =>
             DoAsync(() =>
             {
