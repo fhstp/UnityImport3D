@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ComradeVanti.CSharpTools;
+using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D.Materials
 {
@@ -28,7 +29,11 @@ namespace At.Ac.FhStp.Import3D.Materials
                 : Color.black;
             specular = specular.MultRGB(assimpMaterial.ShininessStrength);
 
-            return new MaterialModel(assimpMaterial.Name, color, specular);
+            var emissive = assimpMaterial.HasColorEmissive
+                ? Opt.Some(ConvertColor(assimpMaterial.ColorEmissive))
+                : Opt.None<Color>();
+
+            return new MaterialModel(assimpMaterial.Name, color, specular, emissive);
         }
     }
 }

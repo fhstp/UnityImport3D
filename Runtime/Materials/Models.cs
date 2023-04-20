@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ComradeVanti.CSharpTools;
+using UnityEngine;
 
 namespace At.Ac.FhStp.Import3D.Materials
 {
@@ -9,15 +10,18 @@ namespace At.Ac.FhStp.Import3D.Materials
         public Color Color { get; }
 
         public Color SpecularColor { get; }
+        
+        public IOpt<Color> EmissiveColor { get; }
 
         public bool IsTransparent => Color.a < 1;
 
 
-        public MaterialModel(string name, Color color, Color specularColor)
+        public MaterialModel(string name, Color color, Color specularColor, IOpt<Color> emissiveColor)
         {
             Name = name;
             Color = color;
             SpecularColor = specularColor;
+            EmissiveColor = emissiveColor;
         }
     }
 }

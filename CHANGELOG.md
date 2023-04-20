@@ -14,6 +14,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Albedo color
   - Opacity
   - Specular color
+  - Emission
 
 ### Changed
 
