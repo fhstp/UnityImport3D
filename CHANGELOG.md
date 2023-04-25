@@ -6,6 +6,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Upcoming
 
+## 0.8.0
+
 ### Added
 
 - Usage info in readme

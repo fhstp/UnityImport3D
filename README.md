@@ -81,7 +81,6 @@ the following scoped-registry if you choose to do so:
 ## Roadmap
 
 - Texture import
-- Material import
 - Better error-handling
 - Optimizations
 - More build targets
