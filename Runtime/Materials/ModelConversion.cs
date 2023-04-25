@@ -33,7 +33,15 @@ namespace At.Ac.FhStp.Import3D.Materials
                 ? Opt.Some(ConvertColor(assimpMaterial.ColorEmissive))
                 : Opt.None<Color>();
 
-            return new MaterialModel(assimpMaterial.Name, color, specular, emissive);
+            /* I dont know if reflectivity is actually the right property
+            *  to use here. There is pretty much no documentation about it,
+            *  but at least it is [0,1] or at least seems that way. */
+            var smoothness = assimpMaterial.HasReflectivity
+                ? assimpMaterial.Reflectivity
+                : 0.5f;
+
+            return new MaterialModel(
+                assimpMaterial.Name, color, specular, emissive, smoothness);
         }
     }
 }

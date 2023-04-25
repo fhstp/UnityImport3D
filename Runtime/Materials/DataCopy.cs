@@ -11,6 +11,7 @@ namespace At.Ac.FhStp.Import3D.Materials
         private static readonly int dstBlend = Shader.PropertyToID("_DstBlend");
         private static readonly int zWrite = Shader.PropertyToID("_ZWrite");
         private static readonly int emissionColor = Shader.PropertyToID("_EmissionColor");
+        private static readonly int glossiness = Shader.PropertyToID("_Glossiness");
 
         internal static Task<Nothing> CopyColor(Color color, int propId, Material material) =>
             DoAsync(() => material.SetColor(propId, color));
@@ -50,5 +51,8 @@ namespace At.Ac.FhStp.Import3D.Materials
                 material.EnableKeyword("_EMISSION");
                 material.SetColor(emissionColor, color);
             });
+
+        internal static Task<Nothing> CopySmoothness(float smoothness, Material material) =>
+            DoAsync(() => material.SetFloat(glossiness, smoothness));
     }
 }

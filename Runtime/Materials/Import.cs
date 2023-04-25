@@ -25,7 +25,8 @@ namespace At.Ac.FhStp.Import3D.Materials
                 model.EmissiveColor.Match(
                     it => SetEmissiveColor(it, material),
                     () => Task.FromResult(Nothing.atAll)),
-                model.IsTransparent ? SetTransparent(material) : SetOpaque(material));
+                model.IsTransparent ? SetTransparent(material) : SetOpaque(material),
+                CopySmoothness(model.Smoothness, material));
 
             return material;
         }
