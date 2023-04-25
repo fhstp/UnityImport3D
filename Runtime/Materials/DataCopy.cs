@@ -7,52 +7,50 @@ namespace At.Ac.FhStp.Import3D.Materials
 {
     internal static class DataCopy
     {
-        private static readonly int srcBlend = Shader.PropertyToID("_SrcBlend");
-        private static readonly int dstBlend = Shader.PropertyToID("_DstBlend");
-        private static readonly int zWrite = Shader.PropertyToID("_ZWrite");
-        private static readonly int emissionColor = Shader.PropertyToID("_EmissionColor");
-        private static readonly int glossiness = Shader.PropertyToID("_Glossiness");
+        private static readonly int colorId = Shader.PropertyToID("_Color");
+        private static readonly int specColorId = Shader.PropertyToID("_SpecColor");
+        private static readonly int srcBlendId = Shader.PropertyToID("_SrcBlend");
+        private static readonly int dstBlendId = Shader.PropertyToID("_DstBlend");
+        private static readonly int zWriteId = Shader.PropertyToID("_ZWrite");
+        private static readonly int emissionColorId = Shader.PropertyToID("_EmissionColor");
+        private static readonly int glossinessId = Shader.PropertyToID("_Glossiness");
 
-        internal static Task<Nothing> CopyColor(Color color, int propId, Material material) =>
-            DoAsync(() => material.SetColor(propId, color));
+        internal static Task<Nothing> CopyColor(Color color, Material material) =>
+            DoAsync(() => material.SetColor(colorId, color));
+        
+        internal static Task<Nothing> CopySpecColor(Color color, Material material) =>
+            DoAsync(() => material.SetColor(specColorId, color));
 
-        internal static Task<Nothing> CopyFloat(float f, int propId, Material material) =>
-            DoAsync(() => material.SetFloat(propId, f));
-
-        internal static Task<Nothing> SetOpaque(Material material) =>
+        internal static Task<Nothing> CopyTransparency(Material material, bool isTransparent) =>
             DoAsync(() =>
             {
-                material.SetOverrideTag("RenderType", "");
-                material.SetInt(srcBlend, (int) UnityEngine.Rendering.BlendMode.One);
-                material.SetInt(dstBlend, (int) UnityEngine.Rendering.BlendMode.Zero);
-                material.SetInt(zWrite, 1);
+                material.SetOverrideTag("RenderType", isTransparent ? "Transparent" : "");
+
+                material.SetInt(srcBlendId, (int) UnityEngine.Rendering.BlendMode.One);
+                material.SetInt(dstBlendId, isTransparent
+                    ? (int) UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha
+                    : (int) UnityEngine.Rendering.BlendMode.Zero);
+
+                material.SetInt(zWriteId, isTransparent ? 0 : 1);
+
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
-                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = -1;
+                if (isTransparent)
+                    material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+                else
+                    material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+                material.renderQueue = isTransparent ? 3000 : -1;
             });
 
-        internal static Task<Nothing> SetTransparent(Material material) =>
-            DoAsync(() =>
-            {
-                material.SetOverrideTag("RenderType", "Transparent");
-                material.SetInt(srcBlend, (int) UnityEngine.Rendering.BlendMode.One);
-                material.SetInt(dstBlend, (int) UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                material.SetInt(zWrite, 0);
-                material.DisableKeyword("_ALPHATEST_ON");
-                material.DisableKeyword("_ALPHABLEND_ON");
-                material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = 3000;
-            });
-
-        internal static Task<Nothing> SetEmissiveColor(Color color, Material material) =>
+        internal static Task<Nothing> CopyEmissiveColor(Color color, Material material) =>
             DoAsync(() =>
             {
                 material.EnableKeyword("_EMISSION");
-                material.SetColor(emissionColor, color);
+                material.SetColor(emissionColorId, color);
             });
 
         internal static Task<Nothing> CopySmoothness(float smoothness, Material material) =>
-            DoAsync(() => material.SetFloat(glossiness, smoothness));
+            DoAsync(() => material.SetFloat(glossinessId, smoothness));
     }
 }

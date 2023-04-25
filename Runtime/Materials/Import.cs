@@ -11,21 +11,18 @@ namespace At.Ac.FhStp.Import3D.Materials
 {
     internal static class Import
     {
-        private static readonly int color = Shader.PropertyToID("_Color");
-        private static readonly int specColor = Shader.PropertyToID("_SpecColor");
-
         internal static async Task<Material> ImportMeshFromModel(MaterialModel model)
         {
             var material = await MakeMaterial();
 
             await InParallel(
                 CopyName(model, material),
-                CopyColor(model.Color, color, material),
-                CopyColor(model.SpecularColor, specColor, material),
+                CopyColor(model.Color, material),
+                CopySpecColor(model.SpecularColor, material),
                 model.EmissiveColor.Match(
-                    it => SetEmissiveColor(it, material),
-                    () => Task.FromResult(Nothing.atAll)),
-                model.IsTransparent ? SetTransparent(material) : SetOpaque(material),
+                    onSome: it => CopyEmissiveColor(it, material),
+                    onNone: () => Task.FromResult(Nothing.atAll)),
+                CopyTransparency(material, model.IsTransparent),
                 CopySmoothness(model.Smoothness, material));
 
             return material;
