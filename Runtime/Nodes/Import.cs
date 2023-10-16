@@ -32,7 +32,8 @@ namespace At.Ac.FhStp.Import3D.Nodes
 
         internal static Task<GameObject> ImportNode(
             AssimpNode node, Func<int, int> resolveMaterialIndex,
-            MeshCache meshCache, MaterialCache materialCache)
+            MeshCache meshCache, MaterialCache materialCache,
+            GroupNodeImportConfig config)
         {
             async Task<GameObject> ImportFromModel(GroupNodeModel model)
             {
@@ -54,7 +55,7 @@ namespace At.Ac.FhStp.Import3D.Nodes
                 return gameObject;
             }
 
-            var model = ConvertToModel(node, resolveMaterialIndex);
+            var model = ConvertToModel(node, resolveMaterialIndex, config.ScalingFactor);
             return ImportFromModel(model);
         }
     }

@@ -11,7 +11,7 @@ namespace At.Ac.FhStp.Import3D.Nodes
     internal static class ModelConversion
     {
         private static bool IsXInverted(Matrix4x4 matrix) =>
-            Vector3.Cross(matrix.GetColumn(0), matrix.GetColumn(1)).normalized != (Vector3)matrix.GetColumn(2).normalized;
+            Vector3.Cross(matrix.GetColumn(0), matrix.GetColumn(1)).normalized != (Vector3) matrix.GetColumn(2).normalized;
 
         private static Vector3 PositionIn(Matrix4x4 matrix) =>
             new Vector3(matrix.m03,
@@ -51,24 +51,25 @@ namespace At.Ac.FhStp.Import3D.Nodes
                 new Vector4(matrix.A2, matrix.B2, matrix.C2, matrix.D2),
                 new Vector4(matrix.A3, matrix.B3, matrix.C3, matrix.D3),
                 new Vector4(matrix.A4, matrix.B4, matrix.C4, matrix.D4));
-        
-        internal static GroupNodeModel ConvertToModel(
-            AssimpNode assimpNode, Func<int,int> resolveMaterialIndex)
+
+        internal static GroupNodeModel ConvertToModel(AssimpNode assimpNode, Func<int, int> resolveMaterialIndex, float scalingFactor)
         {
-            var children = assimpNode.Children
-                .Select(child => ConvertToModel(child, resolveMaterialIndex))
-                .ToImmutableArray();
-            var meshNodes = assimpNode.MeshIndices
-                .Select(meshIndex =>
-                {
-                    var materialIndex = resolveMaterialIndex(meshIndex);
-                    return new MeshNode(meshIndex, materialIndex);
-                }).ToImmutableArray();
+            var children =
+                assimpNode.Children
+                          .Select(child => ConvertToModel(child, resolveMaterialIndex, scalingFactor))
+                          .ToImmutableArray();
+            var meshNodes =
+                assimpNode.MeshIndices
+                          .Select(meshIndex =>
+                          {
+                              var materialIndex = resolveMaterialIndex(meshIndex);
+                              return new MeshNode(meshIndex, materialIndex);
+                          }).ToImmutableArray();
             var matrix = ConvertMatrix(assimpNode.Transform);
-            var position = PositionIn(matrix);
+            var position = PositionIn(matrix) * scalingFactor;
             var rotation = RotationIn(matrix);
             var scale = ScaleIn(matrix);
-            
+
             return new GroupNodeModel(
                 assimpNode.Name, children, meshNodes, position, rotation, scale);
         }

@@ -6,6 +6,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Upcoming
 
+### Fixed
+
+- Fbx-scaling issue
+
 ## 0.8.0
 
 ### Added

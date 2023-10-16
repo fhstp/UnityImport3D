@@ -11,14 +11,16 @@ namespace At.Ac.FhStp.Import3D.Meshes
 {
     internal static class ModelConversion
     {
-        
         private static IEnumerable<int> FaceTriangles(AssimpFace face) =>
             face.Indices;
 
-        internal static MeshModel ConvertToModel(AssimpMesh assimpMesh)
+        internal static MeshModel ConvertToModel(AssimpMesh assimpMesh, float scalingFactor = 1)
         {
             var vertices = new Lazy<Vector3[]>(
-                () => assimpMesh.Vertices.Select(ConvertVector).ToArray());
+                () => assimpMesh.Vertices
+                                .Select(ConvertVector)
+                                .Select(v => v * scalingFactor)
+                                .ToArray());
 
             var triangles = new Lazy<int[]>(
                 () => assimpMesh.Faces.SelectMany(FaceTriangles).ToArray());

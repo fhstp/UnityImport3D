@@ -34,7 +34,7 @@ namespace At.Ac.FhStp.Import3D
                 _ => Task.FromResult(new Material(Shader.Find("Standard"))));
         }
 
-        int ResolveMaterialIndex(int meshIndex) => 0;
+        private static int ResolveMaterialIndex(int meshIndex) => 0;
 
 
         [Test]
@@ -42,7 +42,9 @@ namespace At.Ac.FhStp.Import3D
         {
             var assimpNode = MakeLeaf("My Root");
 
-            var node = await ImportNode(assimpNode, ResolveMaterialIndex, meshCache, materialCache);
+            var node = await ImportNode(
+                assimpNode, ResolveMaterialIndex, meshCache,
+                materialCache, GroupNodeImportConfig.Default);
 
             Assert.AreEqual(assimpNode.Name, node.name);
         }
@@ -60,7 +62,9 @@ namespace At.Ac.FhStp.Import3D
                     })
                 });
 
-            var a = await ImportNode(assimpNode, ResolveMaterialIndex, meshCache, materialCache);
+            var a = await ImportNode(
+                assimpNode, ResolveMaterialIndex,
+                meshCache, materialCache, GroupNodeImportConfig.Default);
             Assert.True(a, "A");
             AssertChildCount(a, 2);
             AssertForChild(a, 1, c => AssertChildCount(c, 1));
@@ -81,7 +85,9 @@ namespace At.Ac.FhStp.Import3D
                     })
                 });
 
-            var a = await ImportNode(assimpNode, ResolveMaterialIndex, meshCache, materialCache);
+            var a = await ImportNode(
+                assimpNode, ResolveMaterialIndex, meshCache,
+                materialCache, GroupNodeImportConfig.Default);
             Assert.True(a, "A");
             AssertChildCount(a, 2);
 

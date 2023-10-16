@@ -18,7 +18,7 @@ namespace At.Ac.FhStp.Import3D
             const string name = "Super mesh";
             var assimpMesh = MakeEmptyMesh(name);
 
-            var mesh = await ImportMesh(assimpMesh);
+            var mesh = await ImportMesh(assimpMesh, MeshImportConfig.Default);
 
             Assert.AreEqual(name, mesh.name);
         }
@@ -32,7 +32,7 @@ namespace At.Ac.FhStp.Import3D
                 new Vector3D(4.5f, -6.7f, -8)
             });
 
-            var mesh = await ImportMesh(assimpMesh);
+            var mesh = await ImportMesh(assimpMesh, MeshImportConfig.Default);
             var vertices = mesh.vertices;
 
             Assert.AreEqual(2, vertices.Length, "Length");
@@ -57,7 +57,7 @@ namespace At.Ac.FhStp.Import3D
                     (1, 2, 3)
                 });
 
-            var mesh = await ImportMesh(assimpMesh);
+            var mesh = await ImportMesh(assimpMesh, MeshImportConfig.Default);
             var triangles = mesh.triangles;
 
             Assert.AreEqual(6, triangles.Length, "Length");
@@ -75,7 +75,7 @@ namespace At.Ac.FhStp.Import3D
                 new Vector3D(0, 0, 1), new Vector3D(1, 1, 0)
             );
 
-            var mesh = await ImportMesh(assimpMesh);
+            var mesh = await ImportMesh(assimpMesh, MeshImportConfig.Default);
             var normals = mesh.normals;
 
             Assert.AreEqual(4, normals.Length, "Length");
@@ -83,6 +83,18 @@ namespace At.Ac.FhStp.Import3D
             Assert.AreEqual(new Vector3(0, 1, 0), normals[1], "Normal 2");
             Assert.AreEqual(new Vector3(0, 0, 1), normals[2], "Normal 3");
             Assert.AreEqual(new Vector3(1, 1, 0), normals[3], "Normal 4");
+        }
+
+        [Test]
+        public async Task Correct_Scaling_Is_Applied()
+        {
+            var assimpMesh = Make01Quad("My mesh");
+            var conf = new MeshImportConfig(10);
+
+            var mesh = await ImportMesh(assimpMesh, conf);
+
+            Assert.AreEqual(new Vector3(0, 0, 0), mesh.vertices[0]);
+            Assert.AreEqual(new Vector3(10, 10, 0), mesh.vertices[2]);
         }
     }
 }

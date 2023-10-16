@@ -32,7 +32,7 @@ namespace At.Ac.FhStp.Import3D
             return mesh;
         }
 
-        internal static AssimpMesh MakeQuad(string name) =>
+        internal static AssimpMesh Make01Quad(string name) =>
             MakeTriangleMesh(name, new[]
             {
                 new Vector3D(0, 0, 0),
@@ -49,7 +49,7 @@ namespace At.Ac.FhStp.Import3D
             string name, Vector3D normal1, Vector3D normal2, Vector3D normal3,
             Vector3D normal4)
         {
-            var mesh = MakeQuad(name);
+            var mesh = Make01Quad(name);
             mesh.Normals.AddRange(new[] {normal1, normal2, normal3, normal4});
             return mesh;
         }

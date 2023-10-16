@@ -1,3 +1,5 @@
+#nullable enable
+
 using System.Threading.Tasks;
 using UnityEngine;
 using AssimpMesh = Assimp.Mesh;
@@ -24,10 +26,12 @@ namespace At.Ac.FhStp.Import3D.Meshes
             return mesh;
         }
 
-        internal static async Task<Mesh> ImportMesh(AssimpMesh assimpMesh)
+        internal static async Task<Mesh> ImportMesh(AssimpMesh assimpMesh, MeshImportConfig config)
         {
-            var model = await InBackground(() => ConvertToModel(assimpMesh));
+            var model = await InBackground(
+                () => ConvertToModel(assimpMesh, config.ScalingFactor));
             return await ImportMeshFromModel(model);
         }
+
     }
 }
