@@ -12,3 +12,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Input listener
 - Manually reload models
 - Cycle through displayed models
+- Fit floor to displayed model
