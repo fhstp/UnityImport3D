@@ -38,5 +38,9 @@ namespace At.Ac.FhStp.Import3D.Nodes
         internal static Task<Nothing> CopyScale(
             Vector3 scale, GameObject gameObject) =>
             DoAsync(() => gameObject.transform.localScale = scale);
+
+        internal static Task<Nothing> CopyIsActive(
+            bool isActive, GameObject gameObject) =>
+            DoAsync(() => gameObject.SetActive(isActive));
     }
 }

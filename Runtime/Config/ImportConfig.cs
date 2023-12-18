@@ -22,6 +22,8 @@ namespace At.Ac.FhStp.Import3D
             {
                 ExtraAssimpPostProcessSteps = PostProcessSteps.None,
                 SceneNameOverride = Opt.None<string>(),
+                ActivateRoot = true,
+                Hidden = true,
                 Parent = Opt.None<Transform>()
             };
 
@@ -42,6 +44,15 @@ namespace At.Ac.FhStp.Import3D
         ///     A transform to parent the instantiated scene to
         /// </summary>
         public IOpt<Transform> Parent { get; init; }
-        
+
+        /// <summary>
+        ///     Whether the root game-object should be activated or not
+        /// </summary>
+        public bool ActivateRoot { get; init; }
+
+        /// <summary>
+        ///     Whether the model should be invisible during the import process
+        /// </summary>
+        public bool Hidden { get; init; }
     }
 }

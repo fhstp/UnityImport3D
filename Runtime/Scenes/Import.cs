@@ -1,5 +1,6 @@
 using System.IO;
 using System.Threading.Tasks;
+using At.Ac.FhStp.Import3D.Nodes;
 using ComradeVanti.CSharpTools;
 using UnityEngine;
 using static At.Ac.FhStp.Import3D.Materials.Import;
@@ -24,7 +25,8 @@ namespace At.Ac.FhStp.Import3D.Scenes
         {
             var scalingFactor = scene.GetScalingFactor();
             var meshImportConfig = new MeshImportConfig(scalingFactor);
-            var groupNodeImportConfig = new GroupNodeImportConfig(scalingFactor);
+            var groupNodeImportConfig = new GroupNodeImportConfig(
+                scalingFactor, config.Hidden);
 
             var sceneName = config.SceneNameOverride
                                   .DefaultWith(() => MakeSceneNameFrom(filePath));
@@ -47,6 +49,10 @@ namespace At.Ac.FhStp.Import3D.Scenes
                 meshCache, materialCache, groupNodeImportConfig);
             root.name = sceneName;
             config.Parent.Iter(it => root.transform.SetParent(it, false));
+
+            if (config.ActivateRoot)
+                await DataCopy.CopyIsActive(true, root);
+
             return root;
         }
     }

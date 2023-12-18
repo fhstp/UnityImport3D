@@ -21,7 +21,7 @@ namespace At.Ac.FhStp.Import3D.Nodes
             var mesh = await meshCache.Resolve(node.MeshIndex);
             var material = await materialCache.Resolve(node.MaterialIndex);
 
-            var gameObject = await MakeGameObject(mesh.name);
+            var gameObject = await MakeGameObject(mesh.name, false);
 
             await InParallel(
                 CopyMesh(mesh, gameObject),
@@ -38,14 +38,15 @@ namespace At.Ac.FhStp.Import3D.Nodes
             async Task<GameObject> ImportFromModel(GroupNodeModel model)
             {
                 var (gameObject, childNodes, meshNodes) = await InParallel(
-                    MakeGameObject(model.Name),
+                    MakeGameObject(model.Name, !config.Hidden),
                     InParallel(model.Children.Select(ImportFromModel)),
                     InParallel(model.MeshNodes.Select(
                         meshNode => ImportMeshNode(meshNode, meshCache, materialCache))));
 
-                var allChildren = childNodes.Concat(meshNodes);
+                var allChildren = childNodes.Concat(meshNodes).ToHashSet();
 
                 await InParallel(allChildren.Select(child => CopyRelationship(gameObject, child)));
+                await InParallel(allChildren.Select(child => CopyIsActive(true, child)));
 
                 await InParallel(
                     CopyPosition(model.Position, gameObject),
