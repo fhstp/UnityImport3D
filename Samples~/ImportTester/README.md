@@ -9,3 +9,6 @@ On start-up the sample will load all models inside
 `[User-folder]/3D Models/ImportTester`. You also manually
 reload models by pressing [R].
 
+You can cycle through the loaded models using the [Q] and
+[E] keys.
+

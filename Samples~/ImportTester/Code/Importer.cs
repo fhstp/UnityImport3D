@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,6 +13,7 @@ namespace At.Ac.FhStp.Import3D.ImportTester
     public class Importer : MonoBehaviour
     {
         [SerializeField] private Transform modelParent = null!;
+        [SerializeField] private UnityEvent modelsLoaded = new UnityEvent();
 
         private CancellationTokenSource? importCancelSource;
 
@@ -77,6 +77,8 @@ namespace At.Ac.FhStp.Import3D.ImportTester
                 if (model == null) continue;
                 model.transform.SetParent(modelParent, true);
             }
+            
+            modelsLoaded.Invoke();
         }
 
         private void CancelImport()

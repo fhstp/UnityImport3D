@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 791141844}
   - component: {fileID: 791141845}
   - component: {fileID: 791141846}
+  - component: {fileID: 791141847}
   m_Layer: 0
   m_Name: Global
   m_TagString: Untagged
@@ -379,7 +380,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelSwitchInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 791141847}
+        m_TargetAssemblyTypeName: At.Ac.FhStp.Import3D.ImportTester.ModelDisplayer,
+          At.Ac.FhStp.Import3D.ImportTester
+        m_MethodName: OnModelSwitchInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   reloadModelsInput:
     m_PersistentCalls:
       m_Calls:
@@ -405,6 +419,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727a74c1848dfd940ad92393489260e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelParent: {fileID: 443370779}
+  modelsLoaded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 791141847}
+        m_TargetAssemblyTypeName: At.Ac.FhStp.Import3D.ImportTester.ModelDisplayer,
+          At.Ac.FhStp.Import3D.ImportTester
+        m_MethodName: OnModelsLoaded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &791141847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791141843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a040459e241ee7d4dbebf3b5817c300d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   modelParent: {fileID: 443370779}
