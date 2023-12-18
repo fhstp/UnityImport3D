@@ -10,3 +10,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Floor with auto-tiling texture
 - Input listener
+- Manually reload models
