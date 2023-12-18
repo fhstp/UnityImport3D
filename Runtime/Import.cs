@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -6,7 +7,6 @@ using UnityEngine;
 using static At.Ac.FhStp.Import3D.Scenes.Import;
 using static At.Ac.FhStp.Import3D.Meshes.Import;
 using static At.Ac.FhStp.Import3D.TaskManagement;
-using AssimpScene = Assimp.Scene;
 
 namespace At.Ac.FhStp.Import3D
 {
@@ -45,6 +45,21 @@ namespace At.Ac.FhStp.Import3D
 
             return await InParallel(
                 assimpScene.Meshes.Select(mesh => ImportMesh(mesh, meshImportConfig)));
+        }
+
+        /// <summary>
+        /// Checks if a file is supported for import
+        /// </summary>
+        /// <param name="path">The file of the path</param>
+        /// <returns>Whether the file can be imported</returns>
+        public static bool SupportsFileExtension(string path)
+        {
+            var extension = Path.GetExtension(path);
+            /*
+             NOTE: Every time this function is called, an
+             AssimpContext is created and I don't know if that is bad.
+             */
+            return AssimpLoader.MakeContext().IsImportFormatSupported(extension);
         }
     }
 }

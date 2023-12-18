@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Import-tester sample
 - Invisible importing
+- Helper function to check if file import is supported
 
 ## 0.9.0
 

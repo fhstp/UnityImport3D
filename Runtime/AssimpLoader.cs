@@ -101,7 +101,7 @@ namespace At.Ac.FhStp.Import3D
             return prevLoadAttemptSucceeded.Value;
         }
 
-        private static AssimpContext MakeContext()
+        internal static AssimpContext MakeContext()
         {
             ConfirmLibraryLoadedAndConfigured();
             return new AssimpContext();
