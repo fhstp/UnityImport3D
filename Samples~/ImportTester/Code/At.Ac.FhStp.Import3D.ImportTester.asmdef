@@ -1,0 +1,16 @@
+{
+    "name": "At.Ac.FhStp.Import3D.ImportTester",
+    "rootNamespace": "At.Ac.FhStp.Import3D.ImportTester",
+    "references": [
+        "GUID:39e22437faf958a4fbeee0bc8495a90b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
