@@ -78,6 +78,11 @@ the following scoped-registry if you choose to do so:
 }
 ```
 
+## Samples
+
+The package also includes a sample to show how the import process can be started.
+Have a look at `/Samples~/ImportTester`.
+
 ## Roadmap
 
 - Texture import
