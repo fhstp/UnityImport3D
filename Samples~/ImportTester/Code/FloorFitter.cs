@@ -40,7 +40,9 @@ namespace At.Ac.FhStp.Import3D.ImportTester
                 return bounds;
             });
 
-            transform.localScale = (bound.size + new Vector3(1, 0, 1)) / floorMeshSize;
+
+            var scale = (bound.size + new Vector3(1, 0, 1)) / floorMeshSize;
+            transform.localScale = new Vector3(scale.x, 1, scale.z);
             transform.position = bound.center - new Vector3(0, bound.size.y / 2f + 0.05f, 0);
         }
     }
