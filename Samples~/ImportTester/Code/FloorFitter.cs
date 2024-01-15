@@ -19,20 +19,12 @@ namespace At.Ac.FhStp.Import3D.ImportTester
 
         public void Fit(Transform? model)
         {
-            var meshFilters =
+            var renderers =
                 model
-                    ? model!.GetComponentsInChildren<MeshFilter>()
-                    : Array.Empty<MeshFilter>();
+                    ? model!.GetComponentsInChildren<MeshRenderer>()
+                    : Array.Empty<MeshRenderer>();
 
-            var meshBounds = meshFilters.Select(meshFilter =>
-            {
-                var meshBounds = meshFilter.mesh.bounds;
-                var meshTransform = meshFilter.transform;
-                var worldSpaceMeshBounds = new Bounds(
-                    meshTransform.TransformPoint(meshBounds.center),
-                    meshTransform.TransformDirection(meshBounds.size));
-                return worldSpaceMeshBounds;
-            });
+            var meshBounds = renderers.Select(it => it.bounds);
 
             var bound = meshBounds.Aggregate(new Bounds(), (bounds, meshBound) =>
             {

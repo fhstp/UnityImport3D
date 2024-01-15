@@ -10,6 +10,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Constant y-scale of 1 for floor
 
+### Fixed
+
+- Floor scale not matching mesh
+
 ## 0.10.1
 
 ### Added
