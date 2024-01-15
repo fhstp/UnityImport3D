@@ -6,6 +6,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Upcoming
 
+### Changed
+
+- Project structure. All runtime related files are now inside
+the Runtime folder. All Code files have been moved into a Code
+subfolder.
+
 ## 0.10.1
 
 ### Added

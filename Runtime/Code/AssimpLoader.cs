@@ -29,7 +29,7 @@ namespace At.Ac.FhStp.Import3D
             {
                 var packagePath =
                     Path.GetFullPath("Packages/at.ac.fhstp.import3d");
-                var pluginsPath = Path.Combine(packagePath, "Plugins");
+                var pluginsPath = Path.Combine(packagePath, "Runtime", "Plugins");
                 return Path.Combine(pluginsPath, "Assimp", "Native");
             }
         }
@@ -107,7 +107,8 @@ namespace At.Ac.FhStp.Import3D
             return new AssimpContext();
         }
 
-        internal static async Task<AssimpScene> LoadSceneFrom(string path,
+        internal static async Task<AssimpScene> LoadSceneFrom(
+            string path,
             PostProcessSteps extraPostProcessSteps)
         {
             var ctx = MakeContext();
