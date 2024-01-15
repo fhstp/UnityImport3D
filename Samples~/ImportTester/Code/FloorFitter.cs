@@ -20,9 +20,9 @@ namespace At.Ac.FhStp.Import3D.ImportTester
         public void Fit(Transform? model)
         {
             var meshFilters =
-                (model
+                model
                     ? model!.GetComponentsInChildren<MeshFilter>()
-                    : Array.Empty<MeshFilter>());
+                    : Array.Empty<MeshFilter>();
 
             var meshBounds = meshFilters.Select(meshFilter =>
             {
