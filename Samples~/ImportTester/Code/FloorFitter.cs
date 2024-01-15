@@ -10,6 +10,13 @@ namespace At.Ac.FhStp.Import3D.ImportTester
     {
         [SerializeField] private float floorMeshSize;
 
+        private new Transform transform = null!;
+
+        private void Awake()
+        {
+            transform = base.transform;
+        }
+
         public void Fit(Transform? model)
         {
             var meshFilters =
