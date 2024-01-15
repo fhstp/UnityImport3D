@@ -6,6 +6,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Upcoming
 
+## 0.11.1
+
 ### Changed
 
 - Constant y-scale of 1 for floor
