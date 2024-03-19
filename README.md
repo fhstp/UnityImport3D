@@ -6,6 +6,11 @@ An asynchronous runtime 3D-model importer for Unity
 
 Check out the changelog [here](./CHANGELOG.md).
 
+**⚠️ Development is paused ⚠️**  
+No new features will be added or bugs fixed unless requested through an issue.  
+If you wish to fork this repository and continue the work, you are very welcome
+to do so.
+
 ## Features
 
 Import3D supports most common 3D-model formats
